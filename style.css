@@ -1,13 +1,16 @@
-html, body {
-    width: 99%;
-    height: 99%;
-    background:#111;
+html,
+body {
+  width: 99%;
+  height: 99%;
+  background: #111;
+  overflow: hidden;
 }
 #intro {
-    position: absolute;
-    left: 0;
-    top: 20%;
-    padding: 0 10px;
-    width: 100%;
-    text-align: center;
-  }
+  position: absolute;
+  left: 0;
+  top: 20%;
+  padding: 0 10px;
+  width: 100%;
+  text-align: center;
+}
+
