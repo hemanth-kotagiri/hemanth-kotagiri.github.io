@@ -10,6 +10,44 @@
 
 .particles {
   background-color: black;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: -100;
+}
+
+.iconsList {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#intro {
+  position: absolute;
+  left: 0;
+  top: 20%;
+  padding: 0 10px;
+  width: 100%;
+  text-align: center;
+}
+
+#intro img {
+  display: block;
+  margin: auto;
+  border-radius: 50%;
+}
+
+#intro hr {
+  width: 20%;
+  background-color: rgb(218, 38, 38);
+  border-color: rgb(231, 15, 44);
+}
+
+.header-font {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 10;
+  color: white;
 }
 
 @layer base {

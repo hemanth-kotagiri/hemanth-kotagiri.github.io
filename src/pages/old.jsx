@@ -1,5 +1,11 @@
 import React from "react";
 import Particles from "react-particles-js";
+import oldProfileImage from "../../old/img_compressed.png"
+import {AiFillLinkedin as LinkedIn} from "../../node_modules/react-icons/all"
+import {AiFillGithub as GitHub} from "../../node_modules/react-icons/all"
+import {AiFillMediumSquare as Medium} from "../../node_modules/react-icons/all"
+import {SiTwitter as Twitter} from "../../node_modules/react-icons/all"
+import {FaFacebookF as Facebook} from "../../node_modules/react-icons/all"
 
 const particlesParams = {
         "particles": {
@@ -47,12 +53,12 @@ const particlesParams = {
             "enable": true,
             "distance": 150,
             "color": "#ffffff",
-            "opacity": 0.4,
+            "opacity": 0.2,
             "width": 1
         },
         "move": {
             "enable": true,
-            "speed": 6,
+            "speed": 2,
             "direction": "none",
             "random": false,
             "straight": false,
@@ -105,14 +111,28 @@ const particlesParams = {
         }
     },
     "retina_detect": true
-
 };
 
 const OldWebsite = () => {
   return (
-    <div className="particles">
-      <Particles params={particlesParams}/>
-    </div>
+      <div>
+          <Particles canvasClassName="particles" params={particlesParams}/>
+            <div id="intro">
+                <img src={oldProfileImage} alt="" />
+                <br />
+                <h2 className="header-font text-2xl">Hemanth Kotagiri</h2>
+                <br />
+                <center><hr/></center>
+                <br />
+                  <div className="iconsList">
+                      <a href="https://www.linkedin.com/in/hemanth-kotagiri/" target="_blank"><LinkedIn color="white" size="2rem"/></a>
+                      <a href="https://www.github.com/hemanth-kotagiri" target="_blank"><GitHub color="white" size="2rem"/></a>
+                      <a href="https://hemanth-kotagiri43.medium.com/" target="_blank"><Medium color="white" size="2rem"/></a>
+                      <a href="https://twitter.com/hemanth043" target="_blank"><Twitter color="white" size="2rem"/></a>
+                      <a href="https://www.facebook.com/hemanth.kotagiri.1/" target="_blank"><Facebook color="white" size="2rem"/></a>
+                  </div>
+          </div>
+      </div>
   )
 }
 
