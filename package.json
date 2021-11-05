@@ -23,6 +23,7 @@
     "gatsby-source-filesystem": "^2.3.32",
     "gatsby-transformer-remark": "^2.8.38",
     "gatsby-transformer-sharp": "^2.5.16",
+    "gh-pages": "^3.2.3",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "postcss": "^8.1.1",
@@ -44,6 +45,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "deploy": "gatsby build && gh-pages -d public -b master",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
