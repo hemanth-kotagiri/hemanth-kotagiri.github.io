@@ -1,0 +1,1740 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hemanth Kotagiri | Data Scientist]]></title><description><![CDATA[Stoic 🌈 | Passionate Programmer 🧑‍💻 | Mathematics 🎲
+    | Philosophy 🦉| Physics ⚛ | AI 🤖 | Pythoneer 🐍 | Bibliophile 📚 |
+    Polymath 👁 | Forever Learer  🧑🏻‍🎓| Excited Teacher 🧑‍🏫]]></description><link>https://elastic-meninsky-aa7c74.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 05 Nov 2021 19:15:34 GMT</lastBuildDate><item><title><![CDATA[Introduction to Neural Networks]]></title><description><![CDATA[Introduction to Neural Networks What just happened? You clicked on this article. Let’s dwell on the seemingly insignificant, but profound…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/Introduction to Neural Networks/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/Introduction to Neural Networks/</guid><pubDate>Wed, 06 Oct 2021 18:30:00 GMT</pubDate><content:encoded>&lt;h3&gt;Introduction to Neural Networks&lt;/h3&gt;
+&lt;p&gt;What just happened? You clicked on this article. Let’s dwell on the seemingly insignificant, but profound details of the mechanics of you “Clicking” this article of which you are totally unaware(hopefully, unless you’re a neuroscientist/neuro student). Your brain is entirely responsible for generating these movements that you consciously or subconsciously think to bring into life. Clicking on this article, or grabbing a water bottle next to you, or instantaneously take off your finger after touching a hot solid. Behind all these general movements that you generate, there are millions of “Neurons” in your brain firing and lighting up the connections that you’ve formed earlier. If you are in awe just like me, here’s what really broadly happens in your brain — There are upper motor neurons that reside in the cerebral cortex of your brain that are responsible for the task that you have decided to do — such as walking, talking, or making a cup of tea. Now, there are CPGs(Central Pattern Generators — A collection of neuronal circuits in the back of your brain) that send these very specific “commands” down your phrenic nerve all the way to your lower motor neurons that make your muscles contract to do the thing you’ve decided to do. That is a lot of stuff in just a few seconds that your brain is able to do. Again, this is just the tip of the iceberg of the behind-the-scenes of each and every action that you perform. And, this pattern of firing is particularly important in the context of learning — of which I would dedicate an entirely new article soon. But in this one, let’s have a gentle introduction to Neural Networks and understand how they work in your brain and how they form the fundamental basis of Deep Learning algorithms.&lt;/p&gt;
+&lt;h3&gt;Why Neural Networks?&lt;/h3&gt;
+&lt;p&gt;When you were young, you had little to no idea of how things worked. You learned to walk, talk, sing, love, read all on your own. Because of the neurons in your brain. They are integrated into your brain such that you can learn to do literally anything with a considerable amount of discipline and practice. And that’s something that really bothers a computer scientist. They have asked the question “Can we mimic the same network in a computer to make it think?”. This is the motivation for Artificial Neural Networks. One of the most powerful state-of-the-art algorithms of the 21st century.
+Back in the day, algorithms have been hypothesized but have never been tested to it’s fullest potential due to the lack of computational resources. But today,(Thanks to Moore’s law) we can spin up a powerful Graphics Processing Unit(GPU — for those gamers who are reading this) and “train” a Neural Network to make a computer literally recognize hand-written digits. No kidding, the accuracy could be so good — that it almost never fails to recognize the correct digit in the given image.&lt;/p&gt;
+&lt;h3&gt;Brief History of Neural Networks and What are they?&lt;/h3&gt;
+&lt;p&gt;Neural Networks were very widely used in the 80s and early 90s; but eventually, their popularity diminished in the late 90s because it was getting computationally expensive to move further in the field.
+A Neural Network is a network or circuit of neurons, or in a modern sense, an artificial neural network, composed of artificial neurons or nodes. This is how a neuron looks like in your brain (Mind you, there are a whopping 86 Billion neurons in your brain which are responsible for your cognitive abilities — such as reading this article).
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2a709be033fbfaf9e7f39721c01817a4/8c557/20211007231221.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 64.1891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAACDklEQVQ4y41TTY/TQAzNz+XOkX+A4IA4ABISJ66I7xsqy2H3gBYJAUtX7W6TJk3SzCSZzDRp0rR52ClT2qIVWBrZiu1n+9lxuq4DS9M0EEJAFQpWrG/f3mw2WK/XvbZiSoO2XfW2sw3s+gAhBbTWaJsVus0WIMsyKlLsksuyhOd5GF+NYfQCRZ7j/eknPH31BpJsxwYuyxrloqSgEir7A9C2LeRcoCLfmmwr1bJCNI0w/HmB2w8f4Nbd+7h0J3AWC6pCHcg4w4oSMplSctUnaQKWoUAuMhilofMCJteoqxoNvWjiY/jtAmdfTjAJr6CMgcNgcRzBc0PM3AAzP0S7apESkN7r1EqzrHvwksaV4RzeeIKmbnb+fmSumsQJzj+e4+ztAGevBxCJhNIK8/kcWhV/LYkbYZ8fBNRQjKraTuUwuoh4GQYfXp7gyZ1HePfsRc+PyhUEFZpeXqOQOToLSo+vgulizWDtb34dJnvVbFd+OviMx/ee48fXIfzrKQI/QBiE2y4JvKlrbOhkbhIu5mRpitFoBNd14btTDL+PaMQFjCGOpESuciil0B3dI+vj13do74qTU5khFSnigMfVdJuHh73jsDvkc18cPugoiuD7fk/uLIipQ02kq/6bJfu4u5vEOXCSHXqz/nR4TP4V0yxFkiREgfkn2A7QBvGmeEHLagl78Kz5d6xpIf8D+AsbC+Q2oYYKeAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20211007231221&quot;
+        title=&quot;20211007231221&quot;
+        src=&quot;/static/2a709be033fbfaf9e7f39721c01817a4/fcda8/20211007231221.png&quot;
+        srcset=&quot;/static/2a709be033fbfaf9e7f39721c01817a4/12f09/20211007231221.png 148w,
+/static/2a709be033fbfaf9e7f39721c01817a4/e4a3f/20211007231221.png 295w,
+/static/2a709be033fbfaf9e7f39721c01817a4/fcda8/20211007231221.png 590w,
+/static/2a709be033fbfaf9e7f39721c01817a4/8c557/20211007231221.png 700w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+Those dendrites that you see emerging out of the neuron form connections with other neurons thereby creating this interconnection of a highly complicated structure of which we call a “biological” Neural Network.&lt;/p&gt;
+&lt;h3&gt;Visualizing Neural Networks&lt;/h3&gt;
+&lt;p&gt;But first, what is a neuron? Literally, think of them as a thing that holds some value in the context of Deep Learning. This value is typically between 0 and 1(glorifying the beauty of nature and computation that is driven by binary) as in a neuron being “activated” if the value is close to 1, else “least activated” if it’s close to zero. There are various mathematical functions that you can use for the activation of a neuron — I will discuss them later in a different article altogether. But, just remember, a neuron is a single computational unit that literally holds a value.&lt;/p&gt;
+&lt;h3&gt;Artificial Neural Network&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 500px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d5154e3440b388c3856e4193f0a1005a/0b533/20211007231246.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 89.1891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAAsSAAALEgHS3X78AAAESElEQVQ4y3VUDVDTZRh//xtsg7GxARsfGwzYaJRoDGdBWtnl3SpLubNTykJS+tK4QiHgID4XHMz4cCigbMhQMIVD7hA7GCIoDTHkQ+zMvuAuESNKQrgI6e15pnLYxXv33vt//7/3fT5+v+d5Cbk/GLJkMMzilu/q4iSHFWeARCyQ0rutdsDRgU3+d3i6CR/ZU0oJ64FBjgMbQb91mqBNIUpZJHxLEce57AhfGcjBSzA9wKtf/f7d9v+jLQZWeWo0+ak5f8e9vsrZvy8fmbh+OndDjyWVdBz59L/hMYtZUjpGfCQizesbtFGw9S9N3r70YMDoWcNNerWa0qGj9HpjbvfD6EJUMsaJ6/iIVR4H9rV578v+6CodoP1mOm4tMuEFd1cXQViwQgBnwpqK4zroYBWd/6aSXqpJy4J/Xuu1aj6X40DAIGYWDFOFq4szV0oGT2bFozGIYP7P7kN0V+Sz2wDkPr9a7QyrKwZjs6QWXKxKSaJjjYTHdURHMk93IR+1EfJ5yrioF7eAsSCknVgrEsKnuw/N0sGjdKKj5IrcU7wGAB+4EIAUdJmTE2dt5VOQxeTAiczNIy0FZKVK7gaYOFAmCZ08b7QCx3TiXEl74b5tfDJ14SBpLPzopb7aDEte3BY5vd1EwFsY34mDkTwNBsbpsIUijzea8rrhn1D7hL8PllJCtC7Tnt1g1dw9oKTLlLwRjQX8eq5k6O7XZfRma+Ex9MxiMUGQShjy0mlKqsPoQWV69VR2AqZVkvgGF9Nes8J/x28dB8bQGUT6S43+XT8ydDL7PofD1QuQOo1+7Zm3sDxBmEBYkRf1lboMffvhxGRKbQ8FlUvdBApYA7M+jFwL+PGKtGjNd6dzCWkt26cFMaYwCoj0klrh5YvlAh2yGtbQhv17vpjrPTwN1EzBxa0oGNQuiuWhlEt0P58p6AX8n1ttRV2G+K1icru9mHyZ/4Gux5JWm7Jzowx4IgJnnobj6OAOlzRQ4IscQh1iiB4RTyq9ULi9b+ty6IAZsbkFEOaCOcXO4WO/dxpvgBesw4YHNaWAvkWVH+8/kWlEShC/1qDfM1yfQ9aGqsTY50+FBLwKHI4gDiqPVKbHeC/h0DKPwmx/JTwGDjttXq/hIfEoTO+xz3K/Org3hX5fRxTe7vjfR+omFLWUxhNLTqwv4DHV2bt8R1oMhDQf+HjVna7SOwt9JjrWVnhxXagKL/Bf0AZj4YZb9LE14HB6xlY+Y6tO3YmdEuzvLZJJRcg/c8b4CQEeCXQUmbGVMWSy00hOGXaroa3eTH9vkwh4WPqaSMatxaP2XgYegcMeezfAiFiltB+A+mV+bM5nQ5QMnWmDx6HfzJyF0L9t0JOihChyvjLJ/mrQ0XrW5ePpBErh87+AP+gWeq0+JxYMEHDOXvYJQwAUZoBwdntFInPLWkSQeFPGO8Bvlh2HqF8G7DlKf7DvdRErln0T/wXpohZXCwyJ4QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20211007231246&quot;
+        title=&quot;20211007231246&quot;
+        src=&quot;/static/d5154e3440b388c3856e4193f0a1005a/0b533/20211007231246.png&quot;
+        srcset=&quot;/static/d5154e3440b388c3856e4193f0a1005a/12f09/20211007231246.png 148w,
+/static/d5154e3440b388c3856e4193f0a1005a/e4a3f/20211007231246.png 295w,
+/static/d5154e3440b388c3856e4193f0a1005a/0b533/20211007231246.png 500w&quot;
+        sizes=&quot;(max-width: 500px) 100vw, 500px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It is quite evident from this image that Deep Learning researchers had a knack for organizing these neurons vertically as “stacks” of “layers” while representing them in a computer. This structural organization of the layers is really important in the sense of architecture because even a tiny change in this structure will lead to a completely different result in the sense of learning. The image you see is the most basic ANN which does “Binary Classification”.&lt;/p&gt;
+&lt;p&gt;Let us break down those “Input”, “Hidden”, and “Output” layers one by one.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Input Layer — is always the first layer to which you input your data. This data can be of an image(literally, an array/list of pixel values), in that case, you would be doing image classification — For example, trying to recognize a cat in a given image. Again, it totally depends on the problem statement and you should choose the specific algorithm that yields better results.&lt;/li&gt;
+&lt;li&gt;Hidden Layer(s) — There can be more than one hidden layer. In the above example, you observe that there exists only one hidden layer. These are literally called the hidden layer for the fact that the &lt;strong&gt;“learning” to “recognize”&lt;/strong&gt; the patterns within your data happens within these layers.&lt;/li&gt;
+&lt;li&gt;Output layer — As the name goes, this layer is the output of your algorithm. You can have as many neurons as you want to correspond to your output schema, but again, typically the output of a neural network is only one layer. If your output schema is 2 — That is you have two classes to predict either the image consists of a cat or dog, you can have two neurons representing these two classes. The higher the value that the neuron holds, the higher the probability that the data that you’ve provided is leaning towards that class(be it a cat or a dog).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And all the connections that you see from one neuron to all the other neurons in the next layer — They are called associations(in the biological neuron, these are the dendrites) and each of them has an associated “&lt;strong&gt;weight&lt;/strong&gt;”. Now, this weight is absolutely the key to the learning that happens.&lt;/p&gt;
+&lt;p&gt;When you pass your data from the input layer, each neuron in the next layer(which is the first of the hidden layer(s)) activates due to an activation function that takes in values of each neuron from the previous layer, in this case, the input layer. Now, by making use of these weights that each neuron of the previous layer associates with that specific neuron in the hidden layer, the activation of the neuron(s) of the hidden layer(s) are computed. If you compute the activations of all the neurons of the hidden layers and move forward all the way to the end to the output layer in this fashion — It’s called &lt;strong&gt;“Feed-Forward”.&lt;/strong&gt; This is where the learning begins. Using an algorithm(such as &lt;strong&gt;backpropagation&lt;/strong&gt; — which I will cover later) we adjust these corresponding weights according to the training data and the output of the neural network. The key is to adjust these weights in such a way that the neural network learns to recognize the patterns within the image and be able to produce the desired output.&lt;/p&gt;
+&lt;p&gt;That was a lot! I tried to be as succinct and concise as possible to draw the basics of the entirety of Artificial Neural Networks in one shot. If you have understood most of it, but still have a few gaps — Do not worry, I have been there as well. Just a little bit of reading again and research will do the trick. In the next one, I will go over the technical details of the implementations and even talk about the backpropagation algorithm. Until then, keep learning. And always remember, “You can learning anything!”.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Learn to Use Git and GitHub]]></title><description><![CDATA[Practice Git Here’s Everything that you’re going to learn in this tutorial: Forking and cloning a remote repository via HTTPS. Adding the…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/Learn to Use Git &amp; GitHub - Under 10 minutes/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/Learn to Use Git &amp; GitHub - Under 10 minutes/</guid><pubDate>Wed, 01 Sep 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Practice Git&lt;/h2&gt;
+&lt;p&gt;Here’s Everything that you’re going to learn in this tutorial:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Forking and cloning a remote repository via HTTPS.&lt;/li&gt;
+&lt;li&gt;Adding the upstream repository to your local development environment.&lt;/li&gt;
+&lt;li&gt;Creating and working with branches.&lt;/li&gt;
+&lt;li&gt;Understanding project development and contribution work flows.&lt;/li&gt;
+&lt;li&gt;Learning to use basic git commands such as: commit, add, push &amp;#x26; pull.&lt;/li&gt;
+&lt;li&gt;Pushing the changes to your fork and creating a PR to the upstream repository.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That was a mouthful, follow the steps below to practice!&lt;/p&gt;
+&lt;p&gt;If you are faced with any issues in moving forward with this tutorial, please raise an issue.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Click on the Issues tab of this repository.&lt;/li&gt;
+&lt;li&gt;Add a title and a description of your issue.&lt;/li&gt;
+&lt;li&gt;Create the issue and I will get back as soon as possible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But first, what in the world is Git?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is a version control software that is used to track changes as you make modifications to your file(s).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yes, it’s as simple as that. You can go back in history all the way to your first &lt;code class=&quot;language-text&quot;&gt;commit&lt;/code&gt; and see the changes you’ve made to your files.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is as close as you can get to a time machine - but only for your files and folders.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Forking and Cloning a remote repository&lt;/h3&gt;
+&lt;p&gt;Before you start working with GitHub, you need to have an account. &lt;a href=&quot;https://github.com/join&quot;&gt;Sign up&lt;/a&gt; for GitHub and come back here.
+Now, go to this link and follow these steps to install Git in your computer:
+&lt;a href=&quot;https://git-scm.com/book/en/v2/Getting-Started-Installing-Git&quot;&gt;Click Here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you are using Linux, you could use your package manager to install git directly.&lt;/p&gt;
+&lt;p&gt;To check if you are done installing Git in your local computer, type the following in your command prompt/terminal:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git --version&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you did everything correctly, you will be prompted with the version of Git
+your are running. If not, click the link mentioned above and install it correctly.&lt;/p&gt;
+&lt;p&gt;After you are done with Installing Git, you need to clone this repository.
+For that, follow these steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Click on the green Code button you see and you will get a drop down and copy the specified link.&lt;/li&gt;
+&lt;li&gt;Now, open up your command prompt/terminal and execute the following:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git clone https://github.com/hemanth-kotagiri/practice-git.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;The repository is now cloned in your &lt;a href=&quot;https://www.computerhope.com/jargon/c/currentd.htm&quot;&gt;current working directory&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With this, you now have a local copy of the repository.&lt;/p&gt;
+&lt;h3&gt;Adding the upstream repository to your local development environment&lt;/h3&gt;
+&lt;p&gt;It is essential to add the upstream(a fancy way to refer to the original repository that you have cloned) to your local copy.
+To do this, follow these steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make sure that you are in the directory of the cloned repository.&lt;/li&gt;
+&lt;li&gt;Type the following command:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git remote add upstream https://github.com/hemanth-kotagiri/practice-git.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Now, the upstream repository will be added to your local development environment.&lt;/li&gt;
+&lt;li&gt;To check the available remote(s) you have, type the following:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git remote -v&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;You will get the following as the output:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;origin	https://github.com/{YOUR-GITHUB-ID}/practice-git.git (fetch)
+origin	https://github.com/{YOUR-GITHUB-ID}/practice-git.git (push)
+upstream	https://github.com/hemanth-kotagiri/practice-git.git (fetch)
+upstream	https://github.com/hemanth-kotagiri/practice-git.git (push)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You are now ready to go for the next step, that is to creating a new branch.&lt;/p&gt;
+&lt;h3&gt;Creating and working with branches&lt;/h3&gt;
+&lt;p&gt;Branches are, literally just branches to your workflow. You can have multiple
+branches for your repository where each branch can have its own name and
+possibly, have different code from the main/master branch.
+The idea of branches is to move away from the main/master branch and tinker
+around and work on new ideas/implementations and use that branch to reference
+for raising PRs and &lt;code class=&quot;language-text&quot;&gt;merging&lt;/code&gt; the new changes/implementations to the main/master branch.
+Follow these steps on creating a new branch and check-out (A fancy term to say
+activate) the same.
+To learn more about branches, head over to the &lt;a href=&quot;https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches&quot;&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Assuming that you are in the same working directory of the cloned repository.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Type the following in your command prompt:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git branch feat-0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Here, &lt;code class=&quot;language-text&quot;&gt;feat-0&lt;/code&gt; is the name of the branch you have just created.&lt;/li&gt;
+&lt;li&gt;To see all the branches you have:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git branch -a&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Now, to activate that branch, type the following command:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git checkout feat-0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;You will now be prompted that you have successfully changed your branch to &lt;code class=&quot;language-text&quot;&gt;feat-0&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Understanding project development and contribution work flows&lt;/h3&gt;
+&lt;p&gt;Q. Why did we create a new branch, why not just work on the master branch?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is always a good practice to modularize the features/implementations that you are working on so that they can be addressed individually by peers who are working with you on the same project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You as a contributor to any Open Source project are required to follow a set of
+contribution guidelines. And creating a branch, and raising PRs using it is
+absolutely essential - Which we are covering here.
+Usually, for any project, these are the steps taken to add new features/code into a repository.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Developers will maintain a fork of the upstream repository in their account.&lt;/li&gt;
+&lt;li&gt;They then create a new branch with meaningful name.&lt;/li&gt;
+&lt;li&gt;Make the changes locally by adding new code/implementations.&lt;/li&gt;
+&lt;li&gt;Then, they commit their changes with a meaningful message and push it to their remote origin.&lt;/li&gt;
+&lt;li&gt;After that, the developer will go about creating a new Pull Request to the upstream repository.&lt;/li&gt;
+&lt;li&gt;Maintainers from the upstream repository will be notified and the changes will be reviewed and accepted/rejected.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You don’t have to worry about the last step!&lt;/p&gt;
+&lt;h3&gt;Learning to use basic git commands such as: &lt;code class=&quot;language-text&quot;&gt;commit&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;add&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;push&lt;/code&gt; &amp;#x26; &lt;code class=&quot;language-text&quot;&gt;pull&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;These are the four basic commands that you need to be familiar with.
+Let us learn these four commands in the fun way. Follow these steps:&lt;/p&gt;
+&lt;p&gt;Remember we have added an upstream repository? Now, it’s time to synchronize that repository with your local copy using the &lt;code class=&quot;language-text&quot;&gt;pull&lt;/code&gt; command.&lt;/p&gt;
+&lt;h4&gt;Pull&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Type the following in your command prompt/terminal and make sure you’re in the repository directory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git pull upstream master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Q. What does the above command do?&lt;/p&gt;
+&lt;p&gt;A. It will &lt;code class=&quot;language-text&quot;&gt;pull&lt;/code&gt; the changes/code/implementations of the &lt;code class=&quot;language-text&quot;&gt;upstream&lt;/code&gt;(which is the original repository that you have forked) &lt;code class=&quot;language-text&quot;&gt;master&lt;/code&gt; branch into your local copy.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Now copy your repository URL and type the following command:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git remote add origin {YOUR-REPOSITORY-URL}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The above will create origin, if at all it doesn’t exist.
+In this way, you will pull changes from remote repository, either from the upstream or from your origin.
+In the case of origin, you would type: &lt;code class=&quot;language-text&quot;&gt;git pull origin master&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Add &amp;#x26; Commit&lt;/h4&gt;
+&lt;p&gt;You now have all the changes in the upstream repository synchronized with your local copy of the same.
+Now, you can simply create a file in the repository and track it’s changes.
+Follow these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new folder in the directory with your name.&lt;/li&gt;
+&lt;li&gt;Change directory into that folder that you have just created.&lt;/li&gt;
+&lt;li&gt;Now, it’s your turn to track any file that you wish to. Be it a file consisting of a poem, story, quote, or more technically - Code.&lt;/li&gt;
+&lt;li&gt;Create a new file and write anything within it and make sure, it’s saved in the folder that you have created.&lt;/li&gt;
+&lt;li&gt;You are now ready for your first commit.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Understanding the Staging Area&lt;/h4&gt;
+&lt;p&gt;When you type the following in the command prompt/terminal:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git status&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You will be prompted that you have untracked file(s). This is where you move it to the staging area, that is - They are ready to be committed.&lt;/p&gt;
+&lt;p&gt;Use the &lt;code class=&quot;language-text&quot;&gt;add&lt;/code&gt; command to add particular file(s) to track by the following command:
+If you have named the new file as &lt;code class=&quot;language-text&quot;&gt;poem.txt&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git add poem.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, if you type this: &lt;code class=&quot;language-text&quot;&gt;git status&lt;/code&gt;, you will see that the files are ready to
+be committed. Type the following:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git commit -m &amp;quot;{MESSAGE}&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Use the above command to commit the changes with a message which vaguely describes your changes.&lt;/p&gt;
+&lt;h4&gt;Push&lt;/h4&gt;
+&lt;p&gt;Now, type the following to finally push your changes to your remote
+branch&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git push -u origin feat-0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With this, you have now pushed your new file successfully. To see the changes, head over to your repository in GitHub
+and you will see that there’s a new branch with new files.&lt;/p&gt;
+&lt;h3&gt;Creating a Pull Request&lt;/h3&gt;
+&lt;p&gt;To create a pull request, click on the “Create Pull Request” button that you are prompted when you visit your repository in GitHub.
+You will now have the ability to add a Title and Description that you can write in Markdown, or plain text also works.
+After you are done explaining the changes, click on the Create Button and you are done!&lt;/p&gt;
+&lt;p&gt;Now, the maintainers of the repository will be notified regarding your PR and they would review it!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Machine Learning | Why, and How?]]></title><description><![CDATA[So you have come across the buzz about AI and saw a couple of videos from Simplilearn about “What is Machine Learning?”, or maybe, have read…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/Machine Learning - Why, and How/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/Machine Learning - Why, and How/</guid><pubDate>Sun, 22 Aug 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;So you have come across the buzz about AI and saw a couple of videos from Simplilearn about “What is Machine Learning?”, or maybe, have read a few articles about Machine Learning, or you just came across it today. Anyhow, I would like to distill the road I took to start learning this field to you.&lt;/p&gt;
+&lt;p&gt;By far, the most common question that I am always asked by many friends, students, curiosity munchers is “How to get started with Machine Learning?”. Often, my answer would be the following: Do you want to be that person who has no idea about the math that goes behind an algorithm, but imports a library/framework and builds a model, or do you want to be the one who knows exactly what’s happening behind each epoch of an algorithm’s training and understand the constructs of the hypothesis? You have to choose one. Because, my friend, the first kind of people have failed after a few months eventually giving up(not all, but many). The latter are the ones who go about doing PhD’s or working on improving the existing algorithms or contribute to the community in some way possible.&lt;/p&gt;
+&lt;h3&gt;Disclaimer&lt;/h3&gt;
+&lt;p&gt;These are solely my opinions and the road that I have taken to learn Machine Learning, and I am still walking the way — There are a lot more steps I got to take too. I am in no way considering myself an expert in this vast field, nor do I claim that I am an elitist in teaching you the right steps to take. These are the ones I took, and possibly, would help you to walkthrough too. As the wise man said, “In an uncharted terrain, it’s best to take directions from someone who’s walked the way”.&lt;/p&gt;
+&lt;h3&gt;The Why?&lt;/h3&gt;
+&lt;p&gt;Before we get into the specific details on getting started with ML, the most challenging and intriguing question to ask yourself is “Why do you want to learn ML?”. Take some time off trying to answer this question — because it really determines whether this field is for you or not. If “Money” is all that you care about, there’s a tone of other high-paying jobs/roles that you can take up. But if you’ve got the passion to learn the Mathematics that goes behind an algorithm that can classify potential brain tumor from an image, contributing to society with your tech — then, you are probably at the right place. I don’t mean the “money” suckers aren’t supposed to work with ML, I am just apprehensive about the contributions that they’d make to the community or god forbid, nothing at all.&lt;/p&gt;
+&lt;h3&gt;Please, Remove the Intimidation&lt;/h3&gt;
+&lt;p&gt;When someone walks up to you and tells you that Machine Learning is all about Mathematics, that person didn’t lie. Trust me, Mathematics is all that there is(Not just in ML, but literally about anything that is scientific, computational in nature). The first step you need to take is: Removing the intimidation you have towards Mathematics. Many students really do hate Math for obvious reasons. In fact, I would blame the teachers — not the students. Math is such a wonderful happening in this cosmos, but teachers(not all) fail to reflect its beauty in the heart of the student. Thereby, the learner would never really appreciate its true beauty at all — Until someone who’s crazy about it like me comes up to teach you all of it in its most glorious form. Trust me on this, if you could obliterate the barrier that you have with Math, you can shine in any field. Curiosity and passion are all that it takes for that!&lt;/p&gt;
+&lt;h3&gt;How?&lt;/h3&gt;
+&lt;p&gt;What are the prerequisites? — You may ask. Addition, Subtraction, Multiplication and, Division along with Basic Linear Algebra, Basic Calculus, and familiarity with Vectors. If you have no idea about the latter, there’s a course I cannot stop recommending for everyone. This is the same course I took, and many Machine Learning aspirants begin there. It’s taught by Andrew Ng — Professor at Stanford University.
+&lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot;&gt;https://www.coursera.org/learn/machine-learning&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The above course is absolutely fantastic for beginners. Even for those who don’t have much familiarity with the topics I mentioned above — Because he teaches you the Math as well supplemented with additional resources. The course teaches you almost everything that is considered industry-standard knowledge for Machine Learning practitioners and the course is also available for free for everyone.&lt;/p&gt;
+&lt;h3&gt;Mathematics&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Multivariate Calculus&lt;/li&gt;
+&lt;li&gt;Statistics and Optimization Techniques&lt;/li&gt;
+&lt;li&gt;Linear Algebra&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To learn more along the way, you can get started and enroll in this specialization as well to learn the above-mentioned topics:
+&lt;a href=&quot;https://www.coursera.org/specializations/mathematics-machine-learning&quot;&gt;https://www.coursera.org/specializations/mathematics-machine-learning&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you go through them, you would have a solid foundation in theoretical aspects of Machine Learning. I would be updating you with more courses that you can take up here.&lt;/p&gt;
+&lt;p&gt;I would also go about writing another one for the practical aspects of implementing ML. Such as learning to code(not specifically for ML, but as a skill), learning to read the documentation, and understanding a few fancy libraries/frameworks. Until then, keep learning. And always remember: “You can learn anything!”&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[7 Years of Programming | Here's my Story]]></title><description><![CDATA[It was in the summer when the school announced the long-awaited holidays, of which I always enjoyed spending time mostly playing video games…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/7 Years of Programming - Here&apos;s My story/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/7 Years of Programming - Here&apos;s My story/</guid><pubDate>Sat, 17 Jul 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;It was in the summer when the school announced the long-awaited holidays, of which I always enjoyed spending time mostly playing video games and reading the Tinkle comic books. Out of the excitement, I moved from my home to my uncle’s for a stay and there it was, a Computer with internet access. It was in a small room and in those days having access to the internet was considered a boon(At least for me)! Just as any kid would, I turned my attention in searching for those Miniclip Games, and suddenly, a thought crossed over my mind that completed changed the course of my life.&lt;/p&gt;
+&lt;h3&gt;The Hit&lt;/h3&gt;
+&lt;p&gt;I have had my dinner and as I was going through the large catalog of these mini-games over at Miniclip, I began to wonder, “How in the world are these games made?”. I still remember that I have searched for “How to make games” over at YouTube back in those days when the YT UI was much less bloated(I am sure, if you search for the same query, you’d get a billion different results now). There it was with a rather absurd title that I found interesting, like a video that changes your life, it appeared for good. A single video, that I would credit my entire passion towards learning Computer Science is this:&lt;/p&gt;
+&lt;iframe src=&quot;https://www.youtube.com/embed/nKIu9yen5nc&quot; class=&quot;resize-vertical&quot; style=&quot;height: 521px; width: 521px;&quot;&gt;&lt;/iframe&gt;
+&lt;h3&gt;Apple, Steve Jobs, Code&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Everybody in this country should learn how to program a computer.. Because it teaches you how to think. — Steve Jobs&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Boy, I was a fan of Steve Jobs back in the day. And the quote “Think Different” always hit me deep and drove me to think out of the box. This video that you see above is solely responsible for what I am today. If the neurons in my brain didn’t send a signal down my spine right through my fingers that lay on the mouse to click that video, maybe, today I’d be hating literally about anything that is supposed to be worthy of knowledge.&lt;/p&gt;
+&lt;p&gt;In that video, I saw all these cool-looking people who seem to be very smart but laying out that “Anyone can code, with basic arithmetic and logic with a pinch of passion” really meant something to me. As the name of the channel goes, I went on to Code.org to see if I can learn to code, too. Back in the day, there was a single game on their website wherein I had to write “moves”(in programming, these are the functions that are called upon the dog object) to make a dog move and eat the food upon a grid — And I found it surprisingly gratifying to see the dog move based off on my commands.&lt;/p&gt;
+&lt;h3&gt;Education, Learning and, Polymath&lt;/h3&gt;
+&lt;p&gt;Like that, I started to look into these programming tutorials. Then I started to wonder, what is it that drives these people in doing all this? Where does the passion come from? Out of frustration, I again searched “How to learn anything?”(Typed this by merely underestimating my capabilities that I cannot learn anything). An then I saw another one. For the aspiring polymath that I have become today, I credit all of it to this video again:&lt;/p&gt;
+&lt;iframe src=&quot;https://www.youtube.com/embed/JC82Il2cjqA&quot; class=&quot;resize-vertical&quot; style=&quot;height: 470px; width: 470px;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;This video above completely blew my mind. It changed the way I think about education, knowledge in general. There were times when I was afraid and stayed back at school because I failed in all the subjects and that I would upset my Mom that I wasn’t to the standards that were set forth upon me. But this video made me rethink my 15 years of schooling. If there was one person that I am very much indebted to, it’s Sal Khan. I searched and learned about Trigonometry, Algebra, Physics, and Chemistry from KhanAcademy and I genuinely felt his explanations were so much better than anything I ever heard from teachers in 15 years. his video on Euler’s Identity still gives me chills.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If this does not blow your mind, you have no emotion.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;iframe src=&quot;https://www.youtube.com/embed/mgNtPOgFje0&quot; class=&quot;resize-vertical&quot; style=&quot;height: 521px; width: 521px;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;The excitement that this man has, his story of how he struggled to get into college to learn, and how he started Khan Academy, and everything about him planted a passion in the core of my heart that is still burning and will forever.&lt;/p&gt;
+&lt;p&gt;And there it is, that’s where I started to appreciate the beauty of Math, Science and the first program that I ever wrote was to draw a circle on the canvas using JavaScript that I have learned from the curriculum available at Khan Academy. It again made me feel like I possess superpowers!&lt;/p&gt;
+&lt;p&gt;Soon, I started watching programming tutorials and as always, the legend himself Bucky started a new series with his sweet sense of humor and taught me to program in C. Today, I contribute to his Open Source website. What goes around, surely, does come around.&lt;/p&gt;
+&lt;h3&gt;Python, ML, and Data Science&lt;/h3&gt;
+&lt;p&gt;Like that, a few years have gone by and I had to join college. I took Computer Science and Engineering and in my Freshmen year, and I started learning Python on my own using the Offical Documentation and reading a few books. I got along with it pretty quickly because I really understood the Programming Constructs after I have learned to code a bit JavaScript and C. Later, I enrolled in the Machine Learning course taught by Stanford University professor Andrew Ng over at Coursera. I went about learning the fundamentals there, and started working on projects, gained hands of experience working for a couple of start-ups, freelancing and, learning every day.&lt;/p&gt;
+&lt;h3&gt;Today&lt;/h3&gt;
+&lt;p&gt;I learn every day. You can too. Just a pinch of that passion needs to be planted like how it happened to me 7 years ago. I walk the street and try to contemplate the nature of reality, link the mind-bending ideas of Mathematics, Philosophy, and Computer Science to this motherly nature as a computational stimulation of its own, or is it? As I’ve had a lesson inside my shoulder, I picked up an Anatomy book from a library and learned the basics of the shoulder region. Or ponder about how the spiritual self relates to the mathematical axioms that form the constructive base of consciousness. I have found myself happy learning about literally anything that crosses my mind. You, should not stop until you find that which drives you crazy. Until then, I will be your guide in topics that I know a bit about! Keep finding for it, and I am sure, you will find it. And, never forget, “You can learn anything!”.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Overfitting & Underfitting]]></title><description><![CDATA[In this single article, let’s address the problem that plagues all of Machine Learning. I assume you have read my previous article(s…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/Overfitting and Underfitting/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/Overfitting and Underfitting/</guid><pubDate>Thu, 24 Jun 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In this single article, &lt;strong&gt;let’s address the problem that plagues all of Machine Learning.&lt;/strong&gt; I assume you have read my previous article(s) wherein I introduce you to Machine Learning and walk you through a few classic algorithms. The prerequisites for this article are that you should be familiar with at least a single algorithm, be it Introduction to Machine Learning, At what price should you sell your home - Multivariate Linear Regression, Lets Learn the Fundaments of Classifying Cancer - Logistic Regression, or others. I have linked the articles and you can click and read through them! — Anyone from the above would be sufficient to understand the concepts laid out in this article. Let’s get started!&lt;/p&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Alright, so you have gathered all the data that you need and preprocessed it, you took care of all the features that you would like to include and remove those that you don’t. Before we go directly into the problem, let’s learn about some technical jargon regarding data so that we are on the same page.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Training Data/Set&lt;/strong&gt; is the collection of data points and it’s the starting point that you train your algorithm upon. Sounds simple? Yes, you use this data to learn and recognize a pattern from the data and hopefully form a good hypothesis.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Validation Data/Set&lt;/strong&gt; is the collection of data points that the algorithm you’ve trained has never seen before. You decide the performance of your algorithm based on the predictions that you gather from feeding this data to your model. Solely based on the performance of your model upon this set, would you be able to decide if it’s working as expected or not.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Testing Data/Set&lt;/strong&gt; is like the last resort. Of course, your model doesn’t know these data points, but this is the final evaluation step. You tweak your model based on the insights you’ve gained from the previous set’s performance and test the algorithm upon this set.&lt;/p&gt;
+&lt;p&gt;Why am I talking about all these? You see, when you train an algorithm — be it a regression problem statement or a classification, the data is all that determines how good your model can work in the long run. As the quote goes:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;In the end, it is not the one who has 99% accurate model that wins, but the one who has a lot of data.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;Overfitting &amp;#x26; Underfitting&lt;/h2&gt;
+&lt;p&gt;Now that we have a brief idea of the technical terms such as Training, Validation, and Testing sets — for the sake of simplicity, let’s focus the performance of the algorithm on the first step, which is the training set. Assume that you have trained a model three times. After each time you trained, you have checked the performance of your algorithm by plotting the best-fit curves against a few data points. And these are the graphs you’ve obtained:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 540px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/751bea99657a3f2e90eac0eb4db019a4/07484/20210628234546.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.7027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsSAAALEgHS3X78AAAA6UlEQVQY02WR0W6DMAxF8/8f2IdKqExa+1BCSHASAgRubXdMo7Nk2bnHDnYw1lrEmEBEHAnORTweAdb2nDvWourjSOh74YS2/ebof5n0eh/RdQNMzhMOSwmY+FjrhmEYMM+z6hKElQIsC3C5fHHdqkzqhUmNcytMSlGLQthY3LVoXRedsJSsDUQb9l3Ym1+vN564KJum/YdBNWNt1i//tVorT+j4onfTp7W3ltdb/vXJ1Eb2rlVgUZc1E+/wfHa434OeD3bwpml4vZHzcx/RCBO85wcN7P7kMWae0vNTnPUQgv4E0SX/7HsB1GvQG2GKaPwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234546&quot;
+        title=&quot;20210628234546&quot;
+        src=&quot;/static/751bea99657a3f2e90eac0eb4db019a4/07484/20210628234546.png&quot;
+        srcset=&quot;/static/751bea99657a3f2e90eac0eb4db019a4/12f09/20210628234546.png 148w,
+/static/751bea99657a3f2e90eac0eb4db019a4/e4a3f/20210628234546.png 295w,
+/static/751bea99657a3f2e90eac0eb4db019a4/07484/20210628234546.png 540w&quot;
+        sizes=&quot;(max-width: 540px) 100vw, 540px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;From the above picture, you can draw a few key insights. They are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First Plot: We are clearly underfitting the data. In this case, we are using a linear function that doesn’t give the optimal prediction for new data points. Notice that whatever you do, the curve is linear when you do not include the polynomial terms and the cost shall remain the same with the best fit line. This can be resolved by including a few polynomial terms making it a non-linear function and hopefully get a better hypothesis. Naively, it might seem that the more features we add, the better the fit to the data. However, this is not the case and you’ll see why.&lt;/li&gt;
+&lt;li&gt;Third Plot: If we add too many features, we eventually end up overfitting the training data which is not optimal because if we do so, for the testing data or even the validation data, the output wouldn’t be as close to the true value.&lt;/li&gt;
+&lt;li&gt;Second Plot: This is the ideal curve and it is the right hypothesis for the training data provided which doesn’t overfit or underfit it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Underfitting&lt;/strong&gt;, or high bias, is when the form of our hypothesis function h maps poorly to the trend of the data. It is usually caused by a function that is too simple or uses too few features.
+&lt;strong&gt;Overfitting&lt;/strong&gt;, or high variance, is caused by a hypothesis function that fits the available data but does not generalize well to predict new data. It is usually caused by a complicated function that creates a lot of unnecessary curves and angles unrelated to the data.&lt;/p&gt;
+&lt;h2&gt;But, How do we overcome these two issues?&lt;/h2&gt;
+&lt;p&gt;Simply &lt;strong&gt;when you are faced with underfitting&lt;/strong&gt; — You can resort to adding more features and also include a few polynomial terms or even combining existing two features and making up a new one. You are free to do that, but it does come at the cost of Overfitting.&lt;/p&gt;
+&lt;p&gt;In the other case, &lt;strong&gt;when you see your algorithm is overfitting&lt;/strong&gt;, there are two of the most common ways you can resolve it. The first one is to simply reduce the number of features that you include for training and manually select the features carefully. The other one is Regularization. The main aim of Regularization is to keep all the features, but reduce the magnitude of parameters θj. And, it works well when we have a lot of slightly useful features. Let’s talk about this in the contest of both Linear and Logistic Regression.&lt;/p&gt;
+&lt;h2&gt;Regularized Linear Regression&lt;/h2&gt;
+&lt;h4&gt;Cost Function&lt;/h4&gt;
+&lt;p&gt;When we choose to regularize our algorithm, there are a few changes that we need to make. If we detect overfitting from our hypothesis function, we can reduce the weight that some of the terms in our function carry by increasing their cost. Say we wanted to make the following function more quadratic:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 249px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8699a35edcac035f423b5468a882988a/6a5fb/20210628234716.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.837837837837837%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsSAAALEgHS3X78AAAAo0lEQVQI11XOXQ+CIBiGYf//b7OTdDqnkAc5l6aggvHZE1KtxcYB19j73gk+RykF59z3CWstTLjee3DO32b0z5Y1mtY6/HV4egO5SyQjYxBiRV2VyMoKfd9DbhuuXYdTmoI2BLfhDikkWlLjnOdoaItxGCClAKEURVbgQhpM84REBLShzGoFtq54HKWh4jAelm1CxBJjTKxe+GHyz9g0h+F7tBdoaeXplro4+AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234716&quot;
+        title=&quot;20210628234716&quot;
+        src=&quot;/static/8699a35edcac035f423b5468a882988a/6a5fb/20210628234716.png&quot;
+        srcset=&quot;/static/8699a35edcac035f423b5468a882988a/12f09/20210628234716.png 148w,
+/static/8699a35edcac035f423b5468a882988a/6a5fb/20210628234716.png 249w&quot;
+        sizes=&quot;(max-width: 249px) 100vw, 249px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If we want to eliminate the influence of the last two terms without actually removing them, we can modify the cost function as follows:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 454px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/aae908c841ad642cd38d97482c540e07/b3c1d/20210628234740.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 13.513513513513512%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsSAAALEgHS3X78AAAAf0lEQVQI13WOQRLDIAhFvf8R27o36EITFlHRX3CaNpsyw/D0AepwxZwQGRhjGF6XyvOjf/wvzLuUEmjbEIlAMSHGqJwQQljMfICPA6SemVFyxuP5Ume9hL3s8N7rDlpzrrWGrmlLcy6oteI866q9d311rNq7rN+LyNfZ7P1s+QbslejuWXCrdwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234740&quot;
+        title=&quot;20210628234740&quot;
+        src=&quot;/static/aae908c841ad642cd38d97482c540e07/b3c1d/20210628234740.png&quot;
+        srcset=&quot;/static/aae908c841ad642cd38d97482c540e07/12f09/20210628234740.png 148w,
+/static/aae908c841ad642cd38d97482c540e07/e4a3f/20210628234740.png 295w,
+/static/aae908c841ad642cd38d97482c540e07/b3c1d/20210628234740.png 454w&quot;
+        sizes=&quot;(max-width: 454px) 100vw, 454px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We are adding those two extra terms at the end to penalize the last two features. And if we are interested in penalizing all the features, we do the following:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 348px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/587bbaf5bea951046c1a930a8e7eb8de/34ea4/20210628234751.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.162162162162163%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsSAAALEgHS3X78AAAAZ0lEQVQI1z2OXQ7AIAiDd/9begAd4A+6OTtkyXgpJf0ajvu6EGOEqkKY0WoFbW0Vye7Mgpwz5rwhIuYZvXeUUv598/NZ2HPswpROh0IIVirmk8Ona3ZojOEZ1W/X1jxHRPYAYa2v8AW+eZo1b/OlygAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234751&quot;
+        title=&quot;20210628234751&quot;
+        src=&quot;/static/587bbaf5bea951046c1a930a8e7eb8de/34ea4/20210628234751.png&quot;
+        srcset=&quot;/static/587bbaf5bea951046c1a930a8e7eb8de/12f09/20210628234751.png 148w,
+/static/587bbaf5bea951046c1a930a8e7eb8de/e4a3f/20210628234751.png 295w,
+/static/587bbaf5bea951046c1a930a8e7eb8de/34ea4/20210628234751.png 348w&quot;
+        sizes=&quot;(max-width: 348px) 100vw, 348px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Using the above cost function with the extra summation, we can smooth the output of our hypothesis function to reduce overfitting. If λ is chosen to be too large, it may smooth out the function too much and cause underfitting. Hence, we are supposed to pick and tune the value of λ carefully.&lt;/p&gt;
+&lt;h2&gt;Gradient Descent&lt;/h2&gt;
+&lt;p&gt;We will modify our gradient descent function to separate θ0 from the rest of the parameters because we do not want to penalize θ0 which is the bias term.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 559px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a8200858321d497cc27386bee09626b7/a65ce/20210628234810.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsSAAALEgHS3X78AAAAs0lEQVQY022QCw+DIAyE/f+/U1wGTpCHjofcWqbOmF1yoRa8fmmXc4YQAsYYlG0DK6WEjWp2rbWdpZRWX8269zpueudhnYMjW2vbgL4X0NOEdV2h5BMz9a+qe9hdLZAp2UyhtSFajYnCYozNfBd8wLIse+3PMKaPMdG/udVfQnrADiEQ3QApJRH27WRqvlNKYXyNNFDjMQxn4EpDGMLaGW8K7pgq084O8fexu7t+u/p/z/oABMaG7Az8OgMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234810&quot;
+        title=&quot;20210628234810&quot;
+        src=&quot;/static/a8200858321d497cc27386bee09626b7/a65ce/20210628234810.png&quot;
+        srcset=&quot;/static/a8200858321d497cc27386bee09626b7/12f09/20210628234810.png 148w,
+/static/a8200858321d497cc27386bee09626b7/e4a3f/20210628234810.png 295w,
+/static/a8200858321d497cc27386bee09626b7/a65ce/20210628234810.png 559w&quot;
+        sizes=&quot;(max-width: 559px) 100vw, 559px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 382px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4416ebf97cd409d014dd01e2c8df390e/77edc/20210628234817.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.162162162162163%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsSAAALEgHS3X78AAAAb0lEQVQI1x1OWw7DIAzr/S86OlDzoEBC1XmB/DiW/DrMDK13LGQimE+4O4Q5cGKMgVoVdF3o8asIVCtEFc8z0e57c2bC+/5wLAOH2dxwpoS79R1ypg+G+Q7LJaOUAiJBzt/gBS10HiNkF0RhjFn3B9E0menUSqt8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234817&quot;
+        title=&quot;20210628234817&quot;
+        src=&quot;/static/4416ebf97cd409d014dd01e2c8df390e/77edc/20210628234817.png&quot;
+        srcset=&quot;/static/4416ebf97cd409d014dd01e2c8df390e/12f09/20210628234817.png 148w,
+/static/4416ebf97cd409d014dd01e2c8df390e/e4a3f/20210628234817.png 295w,
+/static/4416ebf97cd409d014dd01e2c8df390e/77edc/20210628234817.png 382w&quot;
+        sizes=&quot;(max-width: 382px) 100vw, 382px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You can observe that we added the first term “( 1 — α*(λ/m)” which will always be less than one and that is responsible for the regularization of each parameter.&lt;/p&gt;
+&lt;h2&gt;Normal Equation&lt;/h2&gt;
+&lt;p&gt;To add in regularization, the equation is the same as our original, except that we add another term as such:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 247px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/896384d66bbac34c5df20f65ea08c72e/fb3c7/20210628234831.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.75675675675676%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABWklEQVQoz3VS2W6DMBDM/39Z+tRWzVuKmnDYQAjhCMaEY7prYtdC6UjAInbHszPsQBBCQvU9mrrC6XxGGEUI6XnvFOq6RtO2KIoLZJpC9xpBECAMIyjV8ziWZTEXY0cVEiHQ0XCWSpxPJ1R1AykStHeFpqoMoUgS/NA3hpQSeZ7R4ZEjtM/dWq6Y5xnTNLv3YRhIWeEGHo+Hq31o2q6lQ51CX7IlZtRNjY/Pd3RKuW+L129neiJM4ngl9Im2xLfqhmtZmrq4ZFB69Pr+VmWFbMmqkBs8HxjjODrCLM+fKhTGaaIgFOZ14LVCvgXfR+z3b/g6HJCnAlEUU+ra+HehdL0VTBjW5n8JB62NqfeuM0FwA6O8lY6QfbVLMNFEai16f+VXqfkeWsJtEHwwp27SpzqJfQ83ydmhLSE2XrNqvnLyWdK/7Ai3sENt26B8puwf5Ne8uiCy8rr2/QJ1wVms2cplLAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234831&quot;
+        title=&quot;20210628234831&quot;
+        src=&quot;/static/896384d66bbac34c5df20f65ea08c72e/fb3c7/20210628234831.png&quot;
+        srcset=&quot;/static/896384d66bbac34c5df20f65ea08c72e/12f09/20210628234831.png 148w,
+/static/896384d66bbac34c5df20f65ea08c72e/fb3c7/20210628234831.png 247w&quot;
+        sizes=&quot;(max-width: 247px) 100vw, 247px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Regularized Logistic Regression&lt;/h2&gt;
+&lt;h4&gt;Cost Function&lt;/h4&gt;
+&lt;p&gt;We can regularize the equation by adding a term to the end of the cost function we defined earlier in the article - Lets Learn the Fundaments of Classifying Cancer - Logistic Regression.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 433px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5f03a9426ddc5dfd33306c51f6f79345/55fc0/20210628234857.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.162162162162163%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsSAAALEgHS3X78AAAAa0lEQVQI112MSw6EIABDvf8ldUEAifwEGU2ANwwLF7No0qbtW57nRu87KSVyztjjwHuPMYYYAtu2IqXCWotznlI+xBhJ5znzby+VnP8OLOW60FqP0g2QmzAhxASGAVRa0Xqn/6m19vpa6+u/JMiZe5ZNOSQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234857&quot;
+        title=&quot;20210628234857&quot;
+        src=&quot;/static/5f03a9426ddc5dfd33306c51f6f79345/55fc0/20210628234857.png&quot;
+        srcset=&quot;/static/5f03a9426ddc5dfd33306c51f6f79345/12f09/20210628234857.png 148w,
+/static/5f03a9426ddc5dfd33306c51f6f79345/e4a3f/20210628234857.png 295w,
+/static/5f03a9426ddc5dfd33306c51f6f79345/55fc0/20210628234857.png 433w&quot;
+        sizes=&quot;(max-width: 433px) 100vw, 433px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Gradient Descent&lt;/h2&gt;
+&lt;p&gt;Similarly, we add the same regularization term “(λ/m) * θj” excluding the bias term which is “θ0”. Below shows how we add these modifications to the optimization algorithm for logistic regression.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 482px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/45176bc218787a4d69f4c3f670d4aafb/37e0d/20210628234927.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAABYUlEQVQoz32S3U7DMAyF+/4PtkukaTdIiLFNG2touzZpm//04HgMaFWI5MSKnS/HTorNZoPtdovdbsfr8XhEHtM0/WuPnOUohCjRNDfEGGeBteRl/Df44RfeJwxDD601+r6H9x5KKQghIKVkM8awdV3HllL6E1o4l2CtgXOOoSEEOiRJdYO2bXk/q89Aay2vy5HSTzVFCIlBOfkO9LAmkuoBVSXQk1pFvnOeYaya9sYx4NZ4NiVJRBuQxRFwIsd+356B1YfB9V2SVdjvazw/nXA5dbhcJLVigCgVgQIuZ4vyanltao/cviIDlg/gbEJdBYID1kXousH50DDsfBphtEM+kgHeT/BuVnKYNZlmlj4M9xJinJCj1lLTydE6rr3513kCrn2D15eRyjVUusPhTRM4zr5SvqiuPNqbY5WiNFSyY3Cx9lFlF6j5gVQljEP4fsVHPEPyhUp5BPIzbBwixz8BEkMLTxkmkBoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234927&quot;
+        title=&quot;20210628234927&quot;
+        src=&quot;/static/45176bc218787a4d69f4c3f670d4aafb/37e0d/20210628234927.png&quot;
+        srcset=&quot;/static/45176bc218787a4d69f4c3f670d4aafb/12f09/20210628234927.png 148w,
+/static/45176bc218787a4d69f4c3f670d4aafb/e4a3f/20210628234927.png 295w,
+/static/45176bc218787a4d69f4c3f670d4aafb/37e0d/20210628234927.png 482w&quot;
+        sizes=&quot;(max-width: 482px) 100vw, 482px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Final Thoughts&lt;/h2&gt;
+&lt;p&gt;That was a lot of knowledge in just one go! Don’t feel bad if you weren’t able to get all that, or felt intimidated by looking at those long Math equations. They are very simple if you have read my previous articles or have even an ounce of familiarity with previous concepts I discussed. But, if you got it all, Congrats again! Pat yourself on your back and keep moving forward! As a recap, we have covered the technical jargon that goes into data, learned about overfitting and underfitting — their cause, and how you can resolve them. And we have also covered Regularization with respect to Linear Regression and Logistic Regression in great detail by enquiring the individual pieces that make them up — Cost function, Gradient Descent.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Never stop learning and trust me, you can learn anything!&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Lets Learn the Fundaments of Classifying Cancer - Logistic Regression]]></title><description><![CDATA[In this article, let’s demystify all the hype out there about Cancer Detection, or detecting if an image consists of a Dog or a Cat, or…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/Lets Learn the Fundaments of Classifying Cancer - Logistic Regression/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/Lets Learn the Fundaments of Classifying Cancer - Logistic Regression/</guid><pubDate>Mon, 21 Jun 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/29e36ecd709cb53b273c140ad2a472f0/d2c28/20210628232953.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.89189189189189%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAADI0lEQVQ4yyWTS3PaWBCF9UvsVBzwgHjIQkggMAjM00KAEISXjcExjh3sxMTPctW4ZjHbeSyyyFQ2MzU/9JvGs7h1F/ee093nnFb+eLrmbjHmZjbk68mIu5Mh60nAzdhnPQ24PQ64nw34MuqwGnhcvfdY9T0u5Cw6TSbNCl0nj1/KMW2WURq5NJa6SzoaJpNQqWYNgnKeUbXAtFFiJQS3Rz4XgUu/nKNdsDi0DZy9OEZ0Fy28QzoSwoyEycZ+QvGdLN2CSc2IY6thrGiInNyOFqFuJjn1qnweeszdA0p67BVk7r7DCL8lK41UUnEOM3tydBrWHsqJW+Z92WbgZPD3Tbp5k0HJppNPS5d5GdOV8ducder0pHhTwO2cQVveNyR+IUNfxv3/tlE8eXRtk3rWpKhr2LEIDVOjK+SDgxzPZ2N+/TTjZuIzqOxTNZK4QlpMRMmoEQp7yVeco8UpaSqKo8fJGXu829nh7Ztt1N0QqdAORTWEJ108Lyd8f7nlfjGitW9RiEdI72xjiWZaLMr21hZvtreIh0PooqcyqhUpWyYZwyAeU8mldErJBOVEhHYxw8PpmB+/3IsxPXoyUsPSKIqOVT1JNWOSVKPoG1wiTlGLobwsx3h2WsYw5FOCWlKlnkoSVBxmrSoPEpvvj5+4E2NG4nJP9KpZKSmocrBJhWAqQl5Pa68aK5tIBKUsbVunK3p2chadYo6Pw67kzeXneZ9/X9Y8iTFj6XDj9qhepmVncLNijKXL0WhldYaVPMqf6yUfuk3GMvrwYJ++Y3PuH0qY+6yCBr9dz/nxcMmXXoNZrcBZq8yyXWMgWfXEzE5e0lHMCjbPXHKrPE99Vj2X+eEBs0aZ83aDu0mPm2Gb6/ctvq1P+XZ9wlWnyrEQLpoOp80SC7fCuFIgeCXbZ1Z3mIgkypFUWsgIlx2X9TDgc7/NVa/F0m/wfBLw99Mlv59PuRCSiUgzksxOZLQj2aT5YYVjwU5F74EjW5RJocyqDh+aVVa+x8dWnTP5dLSpJqC/7pb883jNo6zdSjZmIbJ0ZTU32e1LAoZi0KCQlWOL/haeEP4H98nfPmtl+ucAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628232953&quot;
+        title=&quot;20210628232953&quot;
+        src=&quot;/static/29e36ecd709cb53b273c140ad2a472f0/fcda8/20210628232953.png&quot;
+        srcset=&quot;/static/29e36ecd709cb53b273c140ad2a472f0/12f09/20210628232953.png 148w,
+/static/29e36ecd709cb53b273c140ad2a472f0/e4a3f/20210628232953.png 295w,
+/static/29e36ecd709cb53b273c140ad2a472f0/fcda8/20210628232953.png 590w,
+/static/29e36ecd709cb53b273c140ad2a472f0/efc66/20210628232953.png 885w,
+/static/29e36ecd709cb53b273c140ad2a472f0/c83ae/20210628232953.png 1180w,
+/static/29e36ecd709cb53b273c140ad2a472f0/d2c28/20210628232953.png 4000w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In this article, let’s demystify all the hype out there about Cancer Detection, or detecting if an image consists of a Dog or a Cat, or perhaps even detect if the mail you received last week which reads: “Hey, you won a lottery” is spam or not. Fundamentally, all these problem statements can be categorized broadly under— Classification. These types of problems are quite exciting because the range of problem sets that you can find under the classification realm is immense and they are very intriguing and gives you that thrill to work on them and hopefully have that: “Yes, my algorithm can detect a tumor in an MRI image” feeling.&lt;/p&gt;
+&lt;p&gt;As always, let us work our way through this algorithm from the ground up. I will walk you through the hypothesis representation, activation function, cost function, optimization algorithm. There’s a lot to cover, grab a cup of coffee or your favorite beverage and read through!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;What is Logistic Regression?&lt;/h2&gt;
+&lt;p&gt;Logistic regression is a method for classifying data into discrete outcomes. For example, we might use logistic regression to classify an email as spam or not spam. What do I mean when I say: “Discrete outcomes”? — When you have to predict a value of a discrete class interval. That is, in the case of cancer detection you have two distinct classes that you can predict. Either the patient is diagnosed with cancer or is not. Here there are only two values in our class interval. A Yes, or a No. Positive or Negative. True or False. 1 or 0. No wonder, these two bits have ruled all of Computer Science and Electronics.&lt;/p&gt;
+&lt;p&gt;To attempt classification, we can simply map all predictions greater than 0.5 as 1 and all less than 0.5 as 0 to represent a binary system. However, this method doesn’t work well in all cases of Machine Learning problems. We need to design something better than that. Classification is just like a special case of regression, except that in this case, we are interested in classifying the given data point into discrete classes namely {0, 1, 2… n}. Let us now define the Hypothesis function.&lt;/p&gt;
+&lt;h2&gt;Hypothesis Function Representation&lt;/h2&gt;
+&lt;p&gt;Here, we are dealing with binary classification, we need to model the hypothesis function to take values and strictly predict the outcome between 0 and 1. It doesn’t make sense to predict greater than 1 or less than 0. To fix this, there’s a classic function that maps your input between zero and one. That is the sigmoid function, also called the Activation Function in the context of Deep Learning.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 208px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/cc343e02d09241fe18428a2d3345329e/8f2fb/20210628233806.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 33.108108108108105%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsSAAALEgHS3X78AAAA2UlEQVQoz61RXQ+CMBDb//9bJiRqiFHUIKAIqAOUb/C12iWb02dJmrv1ml1XBP78iedzgo1p+q6/nM1/uNGcRd930Oi6FsPQq15X3RPjOCjY+l9OaDHBTXVdqUFVPYyIfds2uN8LlGVh9HRUljnyXBrOOOQW113CcWbvusBu5yFNz4jjE8LgAN/fY7vdYD53IOX1zR8RRSE8b61mvJiGhH4SHaxWLoLAV+I0TYzDopDIsgSXS4YkidUr6FrKG5qmVgt4pilhZ2WHzeEnu1FtJ8efoHMjZ0fGO15gnBUQeT4xEAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628233806&quot;
+        title=&quot;20210628233806&quot;
+        src=&quot;/static/cc343e02d09241fe18428a2d3345329e/8f2fb/20210628233806.png&quot;
+        srcset=&quot;/static/cc343e02d09241fe18428a2d3345329e/12f09/20210628233806.png 148w,
+/static/cc343e02d09241fe18428a2d3345329e/8f2fb/20210628233806.png 208w&quot;
+        sizes=&quot;(max-width: 208px) 100vw, 208px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It always helps to visualize the functions. Here’s the representation of the above expression:
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/cd758037c0dfb0787cd9d412bdfc9242/8c557/20210628233816.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 15.54054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsSAAALEgHS3X78AAAAdUlEQVQI102OBwoFIRBDvf9BZcWylhXs80lA+EJ4ZopGjTFkzilrLem9836F3jlHvu+jWmtkKUVqrRT8JeoKC1d7bxIHxIP4KMZIXf8fAsQeBK+MMRJCkJSSWGvFOUdqreV5HvZA7z2TYA41pIHe8DJdzpkzPwqY6GV98XP4AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628233816&quot;
+        title=&quot;20210628233816&quot;
+        src=&quot;/static/cd758037c0dfb0787cd9d412bdfc9242/fcda8/20210628233816.png&quot;
+        srcset=&quot;/static/cd758037c0dfb0787cd9d412bdfc9242/12f09/20210628233816.png 148w,
+/static/cd758037c0dfb0787cd9d412bdfc9242/e4a3f/20210628233816.png 295w,
+/static/cd758037c0dfb0787cd9d412bdfc9242/fcda8/20210628233816.png 590w,
+/static/cd758037c0dfb0787cd9d412bdfc9242/8c557/20210628233816.png 700w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It’s evident, that as the input to the above function grows larger, the output of the function tends to 1. Remember that the function g(x) tends to 1 as x tends to positive infinity and vice versa. Now, using this, we shall proceed in defining the hypothesis function as follows:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/59b424525ba809774c1cd7db24cb6bfd/0012b/20210628233824.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.837837837837837%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsSAAALEgHS3X78AAAARklEQVQI132MOwrAMAxDc/+bNkPdeDH+qhA6NhYICSTewI+qCp26fZzOIoI5LxAR1nq+foOZW+gRmJlQVbg7zGxnRGx3wBfHUO1jWC9+bgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628233824&quot;
+        title=&quot;20210628233824&quot;
+        src=&quot;/static/59b424525ba809774c1cd7db24cb6bfd/fcda8/20210628233824.png&quot;
+        srcset=&quot;/static/59b424525ba809774c1cd7db24cb6bfd/12f09/20210628233824.png 148w,
+/static/59b424525ba809774c1cd7db24cb6bfd/e4a3f/20210628233824.png 295w,
+/static/59b424525ba809774c1cd7db24cb6bfd/fcda8/20210628233824.png 590w,
+/static/59b424525ba809774c1cd7db24cb6bfd/0012b/20210628233824.png 661w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;But how does all this work in our case? — The “X” is a vector representing the features of the particular problem statement that you choose and that’s multiplied with the optimized theta values. When you pass this result into the sigmoid function , you would get a vector of values representing the probability between 0 and 1. The lower the value, the closer it is to the class “No” and the higher the value, the closer it is to the class “Yes”. As simple as that. Sounds good? Now, let’s talk about Decision Boundaries.&lt;/p&gt;
+&lt;h2&gt;Decision Boundary&lt;/h2&gt;
+&lt;p&gt;Let’s learn about this the fun way. Assume that you are joining a new institution. They conduct a couple of tests before you join and based off on the score you’ve got — they shall decide if you’re in or not. Let’s call those that get in as “Admitted” and those that aren’t as “Not Admitted”. You have a few data points of the students that got admitted and that haven’t previously based on their scores and you plotted them. This is how it looks like:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 506px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d06bba15c292e8fbf6d8e4b3232b8b77/29f4e/20210628233850.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.21621621621621%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAACX0lEQVQ4y21T2XLbMAz0/39PH/rQTvvQNJMm6eU4TZz4kC3LlnWZoqjDorhdUHWnD8UMRiIELhYLaALa6VQgyzIYY7DLt0jTijGDrjNoWwOlDPZ7g+PRIM8NytJAa4OmGXPq2qCqKua2mAhg13UoVYlUV3jNl6grIE2AUg9MdCzgkCSjX105XF87FnG8N8Z4nd574IlSitU0K+forUPE85HVw5hVNWDqgWyB3Q5kCNzdAY+PwEgEiCIWLoG+twSsMYkYEdCTOvmkX8kMHxaf8ZQusT8wuQAWC4e3bx2sHdne3jo8P48M5TyfgxiWLRMwTVPf/+k0AqpWYas2OOgYiyzEmxsCk0WRAZvNCBJFjpmO5zF2cwO2bnE+EzBJElIuPWBnqWVbeuCmb/Btf4cv4Ves4gpheUTEtvvz2G6wAmVy/t0NINiflrfbrQesqxpLDuTd8j2qrvKJ83SO1+wFeZPi5/4Jn5ZTvIQK998bfLzfYUXQH7MayjTMHrglBDxSaWFXFAXswEn1Nf61vC2wUVs40qjOmlLwXKTY0S3ZBtney0M8DpBTDsPQayiDaVoLQ6byLmtUcD8T7o/lBC/WsGBRa+jGoWy6v/G+78eWZWW0LpEcU6/TKlhjOp3i4eGBk3xmPKE+Z/zP6s4irTq0/UAdhxHw8lFrhZdliWCzxWw2w3q99gtvrfV/gIDK2ft5fFpOqG07JPyT8rJCzT9t4pyDuFCOD7FvX3QV5nEce30vOsvyy1M246K7fzJ+OBw8jmcoL2LC5qKHmCSJxkEQeJez+IrjlfbEBrYq9y53fgPTDOEaoorvkwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628233850&quot;
+        title=&quot;20210628233850&quot;
+        src=&quot;/static/d06bba15c292e8fbf6d8e4b3232b8b77/29f4e/20210628233850.png&quot;
+        srcset=&quot;/static/d06bba15c292e8fbf6d8e4b3232b8b77/12f09/20210628233850.png 148w,
+/static/d06bba15c292e8fbf6d8e4b3232b8b77/e4a3f/20210628233850.png 295w,
+/static/d06bba15c292e8fbf6d8e4b3232b8b77/29f4e/20210628233850.png 506w&quot;
+        sizes=&quot;(max-width: 506px) 100vw, 506px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now you see how important Decision Boundaries are when you can visualize them. You can draw a conclusion based off on intuitive inferences of a new datapoint once you have the decision boundary for the algorithm you’ve trained. In the above case, a linear decision boundary has been obtained by our algorithm — which undoubtedly can be non-linear as well when the data is quite scattered around. That is, you can input non-linear complex functions to the sigmoid activation. But, it shall come with a trade-off if not handled properly — The problem of Overfitting. More on that later in a different article!&lt;/p&gt;
+&lt;h2&gt;Cost Function&lt;/h2&gt;
+&lt;p&gt;We do not want to use the same cost function that we used for linear regression - [[Introduction to Machine Learning]] because the logistic function will cause the output to be wavy, causing many local optima. In other words, it will not be a convex function. Instead, our cost function for logistic regression looks like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 376px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c1c3514f4e5a0badc54deadd43d898d7/d38a6/20210628233950.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsSAAALEgHS3X78AAAA5UlEQVQY01VQgW6FIAz0///vTd82UUGcz2jeiCCC4q2w6bYmTdpyvR6XgcJ7nzLsO5RS6Pv+mm3bBreucM79pI8rOI7jX56zLBZScAj5QeAVTVPj7b1E10qUJUNVMfSPAcPwQNdJPD/VRfA3zlkWi2VZYK3FPM+YxgnjOMJv34qNMdBaJ0xUfEasLSmPmBDCr8KdvsSbBrfbC/KiAOci9TORaDqQ5wVe73cwViUrnHdpWaknas6TRZqOXoQh7KRqhBACNRF1soMgoLUrPHlWMkaKJxhSWFcV2rZNy8boZEU8HN9Owi8vK3/f0DsX1QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628233950&quot;
+        title=&quot;20210628233950&quot;
+        src=&quot;/static/c1c3514f4e5a0badc54deadd43d898d7/d38a6/20210628233950.png&quot;
+        srcset=&quot;/static/c1c3514f4e5a0badc54deadd43d898d7/12f09/20210628233950.png 148w,
+/static/c1c3514f4e5a0badc54deadd43d898d7/e4a3f/20210628233950.png 295w,
+/static/c1c3514f4e5a0badc54deadd43d898d7/d38a6/20210628233950.png 376w&quot;
+        sizes=&quot;(max-width: 376px) 100vw, 376px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 336px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9993fb3815af5ad8e75452abb989d3cd/d99f2/20210628233956.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 18.243243243243242%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsSAAALEgHS3X78AAAAy0lEQVQY022PUQ+CIBSF/f//r1KQ4IKI6VI0YauHTlfqsbsxxvbd7xwqSw5KStSXM1p1hbMORBZLXDHeBrRC4NIICCmwriviEpFSxt95v1GFPrDEQrUS2hB852FZuG0PXtwxDAMHEGKMmOcFWl9hmCMycMwe3Ov1xGPbi7MiY78tziduqItMa1OWY1zKW7WqtDvOIWyYb+qab/njIqZp+grv9xmh7+GcLYk3buR9X76Vc8I4jgghcJMNOaXS2DPvuw7kHPY9MZdL2DEfkhkqx11txI4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628233956&quot;
+        title=&quot;20210628233956&quot;
+        src=&quot;/static/9993fb3815af5ad8e75452abb989d3cd/d99f2/20210628233956.png&quot;
+        srcset=&quot;/static/9993fb3815af5ad8e75452abb989d3cd/12f09/20210628233956.png 148w,
+/static/9993fb3815af5ad8e75452abb989d3cd/e4a3f/20210628233956.png 295w,
+/static/9993fb3815af5ad8e75452abb989d3cd/d99f2/20210628233956.png 336w&quot;
+        sizes=&quot;(max-width: 336px) 100vw, 336px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Notice that with a simple if/else condition we can choose to define the cost function for that specific training example depending upon the variable “y”. When the value/output for that training example is of class “1” or “True” or “Yes” or “Cancer” or anything positive — we define the cost to be the negative logarithm of the hypothesis function. When it’s “0” or “No” or “Negative” or “Not Cancer”, it’s the negative logarithm of one taken away from the hypothesis. If all this sounds complex, there’s a neat trick to simplify this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 424px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e393be90d8c8a840f473ffdd62626a5d/1cfa9/20210628234013.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 6.081081081081082%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAAAsSAAALEgHS3X78AAAARElEQVQI1y2LSQ6AMAwD+f8vKZSmKMmhWa4mqjiOx3MIM8bTMYggIpjzRWbA3YsZrZ2g33kElq3yuZvr7rU5VHV/zBwf6D5Lc6w68aAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234013&quot;
+        title=&quot;20210628234013&quot;
+        src=&quot;/static/e393be90d8c8a840f473ffdd62626a5d/1cfa9/20210628234013.png&quot;
+        srcset=&quot;/static/e393be90d8c8a840f473ffdd62626a5d/12f09/20210628234013.png 148w,
+/static/e393be90d8c8a840f473ffdd62626a5d/e4a3f/20210628234013.png 295w,
+/static/e393be90d8c8a840f473ffdd62626a5d/1cfa9/20210628234013.png 424w&quot;
+        sizes=&quot;(max-width: 424px) 100vw, 424px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You can define the cost function in one line as above. We use the variable y so that whenever it’s 1 — the value (1-y) on the right-hand side will nullify the multiplicand, making the cost function specific to a positive example. It’s the same in the other case when y is 0. Let’s visualize the cost in both of the cases:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 300px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9e576c6649e79db5806a719ca9994f12/5a46d/20210628234027.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 81.08108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsSAAALEgHS3X78AAACEUlEQVQ4y5WUiW7iMBCGef+H2apabYXKIliOcrUsBALkIAFCDq5yqE1YYudf2ykpq0ala2nkxBl/88/YkwylFHwQNgVHgiiK3zudDmq1GubzOSzLgmEY2Gw24hvfE0VRqmW4Q7GYQ77Qh7sQ7uwD4HkeFEURFgQBJpMJttvt14A/c/fodgfQxkQAKYlVpo3PYAmQq3h+XmGohPD9kK1EYmOa8U1XFUqShNXKBS+RPg4EkBAq6nkJuaYuAfb7fTiOI1LqSj7CkKWcQKKrkFSgbcdA2z1C1fwUlfT/gGeF/FAGw1dW01NSy/e6XVqUGiQV6AcEkuy/AS+hsUX0DUa/oJAQIkBT6w904yieuSNP/+Opf7wNAtjr9VgN7QQYQynGZgBF93EK4/f40pPE5xwknuM1AVRVlV2bVepF3u7A2i6EZVO8vPKA+HRk9vs9stksGo1m0rNnm04ncN0ZTNNAXzZQfdBQqWgolVXk8kO0Hh0Y5haNpoR2+wmFQgEZ3vD5fB6/248wGURRVGiaCl3X8f2uhZubKh5qQ/y4qzO/Nr7d1lCpyhgOVIxGJgNuUPz1hGazgXK5HKdsWTN4i8M/0j1WgWJ5h2qlBFkesSA8mMb63cbMOl2UhGKxcN9TXrLaHQ5MdsvBSPGw221YC67Z85IBXdQbI5ZeB6XKGPWmzmYNqr4UfrazgjxwxS9uvV4L+wvAZ8RQglWDggAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234027&quot;
+        title=&quot;20210628234027&quot;
+        src=&quot;/static/9e576c6649e79db5806a719ca9994f12/5a46d/20210628234027.png&quot;
+        srcset=&quot;/static/9e576c6649e79db5806a719ca9994f12/12f09/20210628234027.png 148w,
+/static/9e576c6649e79db5806a719ca9994f12/e4a3f/20210628234027.png 295w,
+/static/9e576c6649e79db5806a719ca9994f12/5a46d/20210628234027.png 300w&quot;
+        sizes=&quot;(max-width: 300px) 100vw, 300px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;When the value of the output is 1, we see that whenever the hypothesis output’s values closer to zero — that’s when your algorithm is messed up. That’s when the cost should go up and you can see it in the graph as well.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 299px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/439afad22bcc49fc72073a4acedaa49a/aeb78/20210628234033.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 93.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAACZklEQVQ4y42UbW/aMBDH+f7fgbdImzRpfbNpm5A2CSgqUJ5ZCZCiUh5aRhIKJIHE/u/OwUmgpVukk8+J/cv/7uzLSCmhHyEEeB6GoZp3ux387nXx8uLAtlcYjQzMZtPUWqFG7fPeDE8qlQocx4kXamC73UOpVCWrY2Qu8PNXFf2+qb6FIQGEVBA2Dc4cDgdks1lMJpMYKASrFqRK4mHiY7rwsVyB1AXYbvhnRwCpCgIRRyZYIUNarRY8zzsJW4fDm48JOfry5KfGYI/9XsTvFbBcLmO326UURuGIVI6iVCQ+AzwvxN3AjwSIFJBzeAKUKaCM1CTJlzHQdgKMxp7yVU7lBWCiTiqTMimAhjNkZR1gjv0YeFFhAnjDl1HoDDFJnbMOTop0ASjftCSfUUHuBi78VEHiKv8P8Dx/m00AY+hHe3Sx3suhjAsiTqqtwx3ee7Ds8FSEuKDw/Fqljwrb5HGP+2MxkkP9jsL0EdEQ9i2Lw/QI6B/fcTTH06CBvPDm5gbb7Ta6EFIrie60RUfjceoTyKXr6cN1A/XtXL3uAUphvX5Lk73ieb6kextitgjUGZs/hVivk470ryez223x5esPNJoPaHee0O09YWguSdUfAtmk3KHRIluTWpu60pqahq3MsizVpUxjgOl0il6vh4xh9PHh4yd8+15CtXqLZuMWrSaNzQaur8soFkvodLo0FlGr1VAoFCiiuvLZ2L+6+ox8Po9cLheF3G63qA35r+Qvl0sFME1TtTfDMDAej1+t46YbnQJEDZYLcjgEcWLZ2Hddl7r0CI1GQwHZ5vN5/F2Pz8/Psf8XJZa2UszpN0AAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234033&quot;
+        title=&quot;20210628234033&quot;
+        src=&quot;/static/439afad22bcc49fc72073a4acedaa49a/aeb78/20210628234033.png&quot;
+        srcset=&quot;/static/439afad22bcc49fc72073a4acedaa49a/12f09/20210628234033.png 148w,
+/static/439afad22bcc49fc72073a4acedaa49a/e4a3f/20210628234033.png 295w,
+/static/439afad22bcc49fc72073a4acedaa49a/aeb78/20210628234033.png 299w&quot;
+        sizes=&quot;(max-width: 299px) 100vw, 299px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Similarly, when you have the output of the training example to be zero and your hypothesis is also producing values that tend to zero, that’s when you ascertain that your algorithm is working well. From the graph, it’s evident that the cost also tends to zero.&lt;/p&gt;
+&lt;h2&gt;Gradient Descent&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 290px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/905d384636e9acc2d9ecb80d9f2cc330/139a5/20210628234044.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 31.08108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsSAAALEgHS3X78AAAA20lEQVQY04VQ266CMBDk/z+OR0UiBZ6KUq4ChV4YdzFE1OScSTadbKez0w3MohGGIU6nM6IogizucM7jCO891nXdOJ9HvmPnwUpiYwyGYYC1divnHPUWVKpC23Yfxm+8DDxp9wBsGnAjyzIsi8GtkFBVRaYOhZS4XDixRBzHyPMcIhGomwYjDc/ShCpFIgQmrd+GTBoScUoW9v2DzGck1ysNSiFECqUUyrLcNPM8YxyHTfvoO7Rdv//5ZeicJaH92Blf8Lc1TZ4mjf9w3GVgKE1dtz8L/37wVx01Txep0u0Iw6HaAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628234044&quot;
+        title=&quot;20210628234044&quot;
+        src=&quot;/static/905d384636e9acc2d9ecb80d9f2cc330/139a5/20210628234044.png&quot;
+        srcset=&quot;/static/905d384636e9acc2d9ecb80d9f2cc330/12f09/20210628234044.png 148w,
+/static/905d384636e9acc2d9ecb80d9f2cc330/139a5/20210628234044.png 290w&quot;
+        sizes=&quot;(max-width: 290px) 100vw, 290px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The general form of the gradient descent algorithm is as follows and we shall use the same for this algorithm as well.
+If you are unsure about how this works, head over to my other article — [[Introduction to Machine Learning]] wherein I talk about this optimization algorithm in exquisite detail leaving you with a deep insight into how it actually works with contour plots included.&lt;/p&gt;
+&lt;h2&gt;Logistic Regression In Action&lt;/h2&gt;
+&lt;p&gt;That’s it and if you’ve made it this far — congrats and pat yourself on your back! You can now implement binary classification using the concepts learned above. Pick up any programming language and implement the above and you should have Logistic Regression up and running! We have covered the fundamentals of classification — The problem statement and redefined the Hypothesis Function, learned about the classic Sigmoid Function, understood how the cost function works, and most importantly, you should be able to debug the performance of the algorithm based off on cost plots.&lt;/p&gt;
+&lt;p&gt;This is just the beginning of your journey into the world of classification. You can do a lot here. A lot of cool stuff that layman considers as a superpower. From self-driving cars to potentially detecting cancer. With this, you have also indirectly learned about Neural Networks — A state of the art Deep Learning algorithm. Logistic Regression is more of an abstract representation of a single layer Neural Network. I plan to write more about them soon, so stay tuned.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Until then, never stop learning and trust me, You can Learn Anything!&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Gravity - Sounds Simple and Familiar?]]></title><description><![CDATA[Humans only recently (like in the last 300 years) realized what Gravity is really about. Little over 500 years ago, great minds like Gallio…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/Gravity - Sounds simple and familiar/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/Gravity - Sounds simple and familiar/</guid><pubDate>Sun, 20 Jun 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Humans only recently (like in the last 300 years) realized what Gravity is really about. Little over 500 years ago, great minds like Gallio, Kepler found that Earth and other planets revolve around the Sun and Kepler theoretically proved that they move in an elliptical orbit but not in a circle. They only had one question: Why does this even happen?&lt;/p&gt;
+&lt;h3&gt;How Newton revolutionized thinking about Gravity&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 407px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/691893cce0ca2a0087025e677117c0c4/0ff56/20210724230412.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 137.16216216216216%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAbCAYAAAB836/YAAAACXBIWXMAAAsSAAALEgHS3X78AAAGvklEQVRIxx2VyW8bhxXGeWsLSyJlituQHC5DDjnch5tISiIlUvtC7ZYty5Yt2Upiu62kxFtsFwkMu6lT23XcJgac1ukCBGiAHFo7rRGgKVAgzaEHowV6LZqeChQp2j+gvz7q8DAHDr/5vvfe9z2LEYsSj2oYsYiURlwqm4qja2Hy0QhrjQy3N5u8fqzBkbrJSMJgOJakbqSpaGn6pSrJLLVshmo6jUXxKqiqj7AWJBoJEtPDpGJhloZSfPrgJF882ub+S+PsL9eYryV5dXWYi6tTzBWLVPUEhUiCoUSOVipHI5vDooWDRDpg0RBmQidjRDkxVeTTuxv88f0dnt09yVtbLd4+M8qFxSrXTrS4d77NpZUm7f48DSNDM5GhnsnRzJpYYkmdnJnGzKXoN5MUUzrffXmMj95c5Y0TDR6fn+TpjWU+u73O+ZkyWy2Tc3MVrm+McGFuiDkBbYrkyUKZ0XQeSzAaJJ2KkTcTmMkYhUSU7ZkSr7T72Wpm+cfPd+DPt/jq6T6/f73N51fbbA5mMDSVjbGSgNZpZUwmzJJUUQDDAeldgIQhQ4mHWamneHxpmevHW7w2nefvPz7Fl7/e5Z+/2eM/H57lq/dP8HB9AGtPD62cLmwbzJTyTJaKzNb6O4Cq9DBESqRXMzq3t8Z455VpLq8McevoAJ9dnmO7qPPqSJJnexNs1VK0zTievsO0qxnWW51hlZitlpkfqGLxB71oMpR0MsrGdIk/vPcSv7t3hkffmuNqu8x/f7XHn753nC8/2ObFD9a5UM4wJWulKi5OzdTYmKgyJQzHywXaAxUsquY/WJlcJsbaVIk756d5cmWBq8fqDEVVXtxcgud7/O+TXf76o01+0a5wc6KI2+lia7LC1lSV8VKWZikngGUsYS1ARr6YSceZrqd56+wENwRstKCTVb18vj/Jv39ymr/cO8b9o4NcHymyljNoD+e4c26W0wI4P5hnpmayWJcehgIqhh5hcrjAw4tLPH9nmyeX5xk2I/gdDp7vz/C3hxt8sTfNrYEcpwZM8sEA55YG+eDaGleOtjg+WpGB5FnoMFQPFjvMmZUGH3//NB/dXOPJa3PU0xE8Djs7zRy/lcH8691NXlxfYKuRxdVnp1kw2Jmt8Z2NUXaXh1kYLDNTlbVR/D4S4t/dzVE+fnCGT+5v8mhvlumBFCOmxuPtFmvVJJcWS9w8UiWheui2WjnSKvLu3ryYYIZL602OjPQzWRbAPqebUDjEijT47sVl3ruyyPmVCsfHTFrFmLhknl/uzjAoIeKxOzjU3Y3N1styM8+Hbxzj7Qvz7MwPsdAoM9svgG6PH6+/s9gaZ5cGeHm1Jl4uSF/ETiWDh+emeHpthe3RPFZrD4d7bXQJaEECZP9ogzfPTtGuF2QoReaqJSxOl0Kfw4Pi9ctwQhTSOulYEIfdyg/32jy7fZI725NkIyq9NtsBoE2eI2LVU1MVJmtpJqV/YwMlxiriZYdTwWrrw+P24VdVPIobr5TP6+JnN9b4qdhwtVkUZ/Shelx4nQ788oyIIUI+N4e6DqGFfLQGC4xWCiLZ6ztg2CmPx0dA9ZOSCOu89OCb8+yv1FF9HmLieT2kkhXPB/yiSqxntx9GcTvp6e3F6XYwUMgIoOLD2uvA7fKheoMHDOMiuT8f48G3F6mIv8MBL25hVS8kqOTiJDuticeISA7EJUcTkvbWDqjLicXr99MZjBGJ43QoIt1DPKgyLiFwcrZCJBIi5PcSDfjF/Caj+awMRKecNCjKORjKphnOp3AI2Ne+cQiLyyu9CHduiUGfy4tHmAYUhbhEWlrkpeIasZCfwWycMQGr6DGqEiTjpQw1M0dC10jHQxwWE3TZemQP3dJoYZkQwGg4htejorpcIt+DLjcmIZKMsO9AellORFLAq3mDRj4hDHV80qKAquDyOLFJXy1OxYNDKmUY5OQ2OJxekSRXTyRGRGpQjlgkoFBLRcmI/LSEyYikS4d1VIB8bkWIqMQk+bus3bI28gW7R9yiaYRCGj02J6lgRHqkE/DK+nRWRFKnlAqTFEBTGPcn4yjOziD7ZEAaQ0U5CXqAr/d0SQ8DPuzyR38oKKvgwdbrJKQEGCvK4ZKToMnvUc1HPheTpwSxsDFkfex2O9Ggn9GhHOVcQlgGsNptWHwCZJf0VWT/+pxOAXVKmigUI1HmqwW5gnEMCdqqZKAu7CLygQ6zw7KDGbFfsz/J+KApmRqlq0ckeyUPe0WWIj1zdfrpcOGS9QnItEdycm/L+YPjXxPGSVn4zhC6xdOKIkoEPBkNk02EZCh9AtjD/wGC+4znMiaH5wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210724230412&quot;
+        title=&quot;20210724230412&quot;
+        src=&quot;/static/691893cce0ca2a0087025e677117c0c4/0ff56/20210724230412.png&quot;
+        srcset=&quot;/static/691893cce0ca2a0087025e677117c0c4/12f09/20210724230412.png 148w,
+/static/691893cce0ca2a0087025e677117c0c4/e4a3f/20210724230412.png 295w,
+/static/691893cce0ca2a0087025e677117c0c4/0ff56/20210724230412.png 407w&quot;
+        sizes=&quot;(max-width: 407px) 100vw, 407px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Sir Isaac Newton was the first person to feel the influence of gravity in a different way. Until then no one ever noticed that phenomenon but was experiencing it. Great minds always “Question everything.” The legend is that Newton discovered Gravity when he saw a falling apple while thinking about the forces of nature. Whatever really happened, Newton realized that some force must be acting on falling objects like apples because otherwise, they would not start moving from rest. Newton called this force “gravity” and determined that gravitational forces exist between all objects. Using the idea of Gravity, Newton was able to explain the astronomical observations of Kepler. Then, Albert Einstein opened humankind’s eyes to the universe. He developed a whole new concept for gravity. According to Einstein, Gravity arises from the “wrapping” of space and time. His theory for gravity explains a number of phenomena existing in this observable universe but violates Newton’s theory. For example, Light bends while passing near massive objects like the sun. And the clock raised above Earth is faster compared to the clock on the surface of Earth.&lt;/p&gt;
+&lt;h3&gt;But what is Gravity?&lt;/h3&gt;
+&lt;p&gt;It is a force of attraction that exists between any two objects. Projectiles, Satellites, Planets, Clusters, and Galaxies are influenced by gravity and it is the weakest force in nature.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Fun fact: the force of attraction between you and Earth is your weight!
+Albert Einstein changes the perspective&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Albert Einstein changes the perspective&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/124c7b12495ee0f248b8a9d96c527b1d/8c557/20210724230449.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 53.37837837837838%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACn0lEQVQoz1WS2U8TYRRHh8W20GI3ptN2urfsoLQUBWypIEUGUEFRwA0XNg2IitFgEB9wiRIRjfFFnkx8MvFfPN4ZxOjDL3fyzcyZM/dexWavxVHrwuao5YjNgcPusKq9xkWNs06qE7vDic1eI+c2qquPUFlVRWVlFRUVFSiK8n/cPpUalxe/ppNsz6J39JJuO04gGKbOo+ILhPDWB/H4Ndz+AObzdR4/zjoPtS63JVNts5NKxvF5PQL0h8iXTvNoc5X1nc8s7f7g7JNdZleX6ertwqtGCEYSaHr8IJE4gXCM+lAUNRzFJyJeNcSbrYcU+/IoxVIfa5tXuL02x5vP3/j6/Rfj63sYC3PMLvRTLPWIpU5IoEEBBg/BfxIQqCb3wpGY/GUI5emLi8xvjDG3cp3t3X2Wn+9Rnlunc6SX0vk27t+7TLqh2WqJaWcmGE3+A4xZVZVqGivji9d4ufOJtx/22dz+yNLjVwxO3SXbn+XU8BC7r1cZNsq4VZ1wIo0WFdNYyoKGpIbjKcvQjHmm5MduMTn9gHurG9yaf0z5wh0GjGnerU/zfuMqP789YfScwVHptfmyBUk2WAnFM3+jRQVsAsduzgpwieGRG5RHZsgXp1hZuMSXrUme3T/D1tYEXT05XEd91EuPzJim0UyzgNJynRHjA1vTXFncmKF8sYeOToOBoeu0dg7T059naCRL32ArReMYETHzqRqqFpaJx0g0tJBqaiMh0Fiq0RqYLjBNj6GMXp6h+3RGQGla24tEkt246xMEoi3kCkVO9uZp7OiiqSNLuqXdgiUFFks3oYuhCdLFUJM10uXDSra7QHl0EmNigsKAQe5kidyJAqWzkxQGDdqOd5NuElCmhUii0YIE9QR+WXhzuqbd4UoFBPobrapVt9ehFt4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210724230449&quot;
+        title=&quot;20210724230449&quot;
+        src=&quot;/static/124c7b12495ee0f248b8a9d96c527b1d/fcda8/20210724230449.png&quot;
+        srcset=&quot;/static/124c7b12495ee0f248b8a9d96c527b1d/12f09/20210724230449.png 148w,
+/static/124c7b12495ee0f248b8a9d96c527b1d/e4a3f/20210724230449.png 295w,
+/static/124c7b12495ee0f248b8a9d96c527b1d/fcda8/20210724230449.png 590w,
+/static/124c7b12495ee0f248b8a9d96c527b1d/8c557/20210724230449.png 700w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Einstein’s theory is illustrated perfectly in this image. Albert was the first one to predict the existence of gravitational waves in 1916 based on his General Relativity theory. General relativity interprets gravity because of distortions in space-time, caused by mass. Therefore, Einstein also predicted that events in the cosmos would cause “ripples” in space-time — distortions of space-time itself — which would spread outward, although they would be so minuscule that they would be nearly impossible to detect by any technology foreseen at that time. 1.3 billion years ago in a galaxy far away, two black holes merged as they violently spiraled into each other. They created traveling distortions in the fabric of space-time. To scale the gravitational waves: just in the last tenth of a second the energy released in these waves was 50 times greater than the energy being released by everything else in the observable universe combined! Out through the universe at the speed of light for over a billion years the waves reached earth where they stretched and squeezed space such that two light beams traveling in perpendicular pipes were put slightly out of step allowing humans to detect the existence of gravitational waves for the first time. It all happened at LIGO (Laser Interferometer Gravitational-Wave Observatory).&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 500px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1df584c4a0e58fbfec49faf52030a6a6/0b533/20210724230557.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAAB/ElEQVQ4y6VUXW/aMBTl//+DPu5he2of2kxTJgbrpm7TJGBSydLANlYpgULIGsgnhMRndmwnJTUIqTeyHMfO8bnnHrsFgLCQ/UujJcAYWtWejlXRXPN0bQvsHRxTNsn4WHu2pmJY4hHkRUGiKEIcxyczLIoCURgiSRJBiVCGtMu2W8wnE8LAyslG6k0w+S3f7ZBsNlg/+lh7Hk9Zahgsl8QdjQ5qpdKuZJllWFgWsjQVGnI9ynWPjoP58AfiJEWeF0dB2WwaBrAHPaRRLVNdZaoh62979xh/uoa/WqkrSRsDm9v3MNpd+P+iSs86ZSJLXWAyBzr6L0w+d0GaqYuf0mCNweVbXH9ZwY85X76XYEhI7R02meSAYxgYtdsciD47qhWLbRDA1C4xtb09MIjfBSAqKfmAM/nb62GgdzBzPUynDhz7Af3zC3izGeTmEqwydg3HtiAVdZmeMTTx9eYGd+ZPdNofMXtYcqh8H0y6qwKUnPeqWeTl+7fvfbx+9QbWnUmNn8B13aoITZ/uAap8ZpgLdN93YY1HuLp6h4W7ouaPsaGGVp0oJUP5ybUdnF9osEyzHOu6Dk3T4Pv+wSP6jKEchvRcfzg7w7A/wPj3H0yp6Vk4olelezBlpk9I7REJFux8Z8I2TVYnpaw6z6femUeLorpAj11rSoYvjf/smxlDhkLYpwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210724230557&quot;
+        title=&quot;20210724230557&quot;
+        src=&quot;/static/1df584c4a0e58fbfec49faf52030a6a6/0b533/20210724230557.png&quot;
+        srcset=&quot;/static/1df584c4a0e58fbfec49faf52030a6a6/12f09/20210724230557.png 148w,
+/static/1df584c4a0e58fbfec49faf52030a6a6/e4a3f/20210724230557.png 295w,
+/static/1df584c4a0e58fbfec49faf52030a6a6/0b533/20210724230557.png 500w&quot;
+        sizes=&quot;(max-width: 500px) 100vw, 500px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;That’s a simple enough story to tell but, the main problem with detecting gravitational waves is that they’re tiny. Infinitesimally tiny. To detect such tiny wiggles you have to measure over as large a distance as possible which is why the arms of the interferometers are 4 kilometres and even with arms these long gravitational waves vary the length of the arms by almost 10^(-18) meters so the detector has to be able to reliably measure distances just one ten-thousandth the width of a proton. it’s the tiniest measurement ever made. So, how did they really measure them? They use mirrors to measure these distortions. They call it the Laser Interferometer. Two mirrors hang far apart, forming one “arm” of the interferometer, and two more mirrors make a second arm perpendicular to the first. Viewed from above, the two arms form an L shape. Laser light enters the arms through a beam splitter located at the corner of the L, dividing the light between the arms. The light can bounce between the mirrors repeatedly before it returns to the beam splitter. If the two arms have identical lengths, then interference between the light beams returning to the beam splitter will direct all the light back toward the laser. But if there is any difference between the lengths of the two arms, some light will travel to where it can be recorded by a photodetector.&lt;/p&gt;
+&lt;p&gt;The space-time ripples cause the distance measured by a light beam to change as the gravitational wave passes by, and the amount of light falling on the photodetector to vary. The photodetector then produces a signal defining how the light falling on it changes over time. The laser interferometer is like a microphone that converts gravitational waves into electrical signals. Three interferometers of this kind were built for LlGO — two near Richland, Washington, and the other near Baton Rouge, Louisiana. LIGO requires at least two widely separated detectors, operated in unison, to rule out false signals and confirm that a gravitational wave has passed through the Earth. LIGO detected these waves on Sept. 14, 2015. It was a significant achievement by mankind that anyone could ever dream of it happening. As he said “The important thing is not to stop questioning. Curiosity has its own reason for existing.” Just keep questioning everything. Never stay calm. And always remember, You can learn anything!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[At What Price Should You Sell Your Home - Multivariate Linear Regression]]></title><description><![CDATA[Prerequisites 
+If you haven’t read my previous article, in which I walk you through step by step behind the scenes of the Linear Regression…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/At What Price Should You Sell Your Home - Multivariate Linear Regression/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/At What Price Should You Sell Your Home - Multivariate Linear Regression/</guid><pubDate>Sat, 15 May 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a2a23e2acb4ffe34d4d9bb27601f971b/d2c28/20210628231947.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.89189189189189%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAADX0lEQVQ4yx2T+09aBxTH77KlqbFDEB+IApf3S0BAuFB5XkCeIgKKigo+iSLWGFe7VLu1M1uTptn2y5asW5b9smR/5Wd3+/mcfJ/nCFLES209SiqboFQoEIolWUoWiKVzrDZb3NxdstssslHMcrm/icPloSRnePfwmp9+/sgvv/3Od4/v6TYb9No1BDkn47Fbifpc9LsttjodLs5PkStVzl6+4Oj8iFQ8xM5GlXoxRy61QizoZvV58P/du7tXfLi/4Oa0xctRD2G3USAhebgaFlkOuWltbvL28ZFyo4lcLlOulRFdQQrVOuFImFeXHT48nNBrVVgy64m6jDTyEvFlK73+NkJFYZUCVlr1IEabl2xumXpjhWQqzcXomovhkHS2yIvzE6LBCLbZGXYqBa6P++z1T9gbjLi7f0O+lMfksCM43AakkI9MOs1yLEE87SasKF70eNhq1zkc9Qln8zSrWTKFPMf9DvdfDZhXT9C/vuDr798wHA1ZPzhDii4hlBseIisBDKIJm9VCPiUxOztPQsnqanjAvMWGOyFz/PpbWr0e5fUVKqsZwmE/Vu8CkaiT8t4ZmU6bZMmB4A5r8Ut6xPkx5JSL47MCxaLE1dUpP7x/h8XqIBxcYufwiEjcT9C/gE4vEggogGYbDpvixiui0T1hYk6FMLMwjjswS0I2IFqmyNUsyHkXibjE24db3P4ARqOZwX6L9bUUYZ+JfiNJp5YllUxhFy0KiQu9YQadUcnQK6kxu1Rs7FpwBaZZq1oprYbQaHS012S621VEp52VTIKt7ia6eSOS30r5uUMhEnFaTGhVX+K1mfAtehD2Rwb0JjVOv4Z6V1TUOZEzMdrtIp3uNnuHfUW1l9tv2oTicRZtogK2qBTpJZaR+fXTj/QP2vh9boa3VwgbB0YKDRdPxsdRz4yh1k0wOadhMGhzrjRsczjR6WZolCJkJAdm8zQBv8jBZplELk9tt8v1zYC///mLT3/+gWAPKLlVvUxM6XiqGlPsTVDfsZNIL2Ox2Ujnc+jm/ivCRDwZUo5cSyRtot2ME3CKqDSTqCe1rNdLZNNxBKt7gVx9EbPdiEb9jHHNU4wWLXqzgc8+H0NK+akqv2xyOPji2ZgyH2POpGJwGSNf8aGansXg82HS6ZnTTvEvpz3COrjJBoQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628231947&quot;
+        title=&quot;20210628231947&quot;
+        src=&quot;/static/a2a23e2acb4ffe34d4d9bb27601f971b/fcda8/20210628231947.png&quot;
+        srcset=&quot;/static/a2a23e2acb4ffe34d4d9bb27601f971b/12f09/20210628231947.png 148w,
+/static/a2a23e2acb4ffe34d4d9bb27601f971b/e4a3f/20210628231947.png 295w,
+/static/a2a23e2acb4ffe34d4d9bb27601f971b/fcda8/20210628231947.png 590w,
+/static/a2a23e2acb4ffe34d4d9bb27601f971b/efc66/20210628231947.png 885w,
+/static/a2a23e2acb4ffe34d4d9bb27601f971b/c83ae/20210628231947.png 1180w,
+/static/a2a23e2acb4ffe34d4d9bb27601f971b/d2c28/20210628231947.png 4000w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+If you haven’t read my previous article, in which I walk you through step by step behind the scenes of the Linear Regression Algorithm, where we intuitively build up the entire essence of Math that goes behind it incrementally, you really need to check that out - &lt;strong&gt;Introduction to Machine Learning&lt;/strong&gt;. This article is an extension of the previous one and I assume you have had a go at it. In this article, let us deal with the problem where we have multiple features/variables that influence our algorithm. Again, these are the personal notes that I have taken while going through Andrew Ng’s Machine Learning course over at Coursera. Feel free to pick that up if you are interested and the best part is that the course is free.&lt;/p&gt;
+&lt;h2&gt;BACKGROUND&lt;/h2&gt;
+&lt;p&gt;Notice the picture that I have specifically chosen for this article — Houses. It’s apparent that each home has the potential to be sold at a valuable price. In the previous article, we have dealt with a single feature — That is, we literally built our entire algorithm based on a single factor that might influence the price of a home. Let me make things even more clear of what we are referring to when we say “Features”.&lt;/p&gt;
+&lt;p&gt;Say you are a resident in one of these homes. And you are planning to sell your home. How would you go about effectively choosing a threshold to which you are supposed to sell? That’s where this algorithm can help. The features, in this problem, are the characteristics of your home. Such as :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How old is the home?&lt;/li&gt;
+&lt;li&gt;The total number of bedrooms that your home has.&lt;/li&gt;
+&lt;li&gt;The number of bathrooms that your home has.&lt;/li&gt;
+&lt;li&gt;The total area that your home occupies.&lt;/li&gt;
+&lt;li&gt;Does it have a parking lot? If so, how many cars can I park?&lt;/li&gt;
+&lt;li&gt;Does it have a backyard where I can sit back in the monsoon and read a romantic novel?&lt;/li&gt;
+&lt;li&gt;Does it have a swimming pool where I can enjoy the summer?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can already see, the feature space is blowing up and you can also combine a couple of features and create a new one as well. This is where the feature space comes into the picture and it’s really essential to keep track of what features influence the most, and which do have a greater impact on the performance of the algorithm in the long run.&lt;/p&gt;
+&lt;p&gt;So, the idea is, to predict the price that your house can be sold based on the “learned examples” which had the same multiple features. If you have understood the above, congratulations! You can now start working on the most famous Kaggle Competition that all beginner Machine Learning aspirants take up — The Housing Prices Competition — This was my first competition as well. Enough of talking, let’s get to Math.&lt;/p&gt;
+&lt;h2&gt;HYPOTHESIS FUNCTION — REDEFINED&lt;/h2&gt;
+&lt;p&gt;Here, based on the hypothesis we defined in the previous article, if we have a function with multiple variables/features such as x1, x2, x3… xn; then, we would represent the hypothesis function like :
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 441px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ce257271f8d41797d8e17761eb242932/efc6e/20210628232207.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.837837837837837%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsSAAALEgHS3X78AAAAhUlEQVQI112O3QrDIAxGff8nXFlnWS+UqbUrXhj8+2YcHaOBYM4xCRFEhJwzWmsgikgp/bLWilJKz4wY42D27DiYef7bUwaLabpBK4UQAqR8wJgXtNbDbZvrbOC9xzzf4ZzFuj5xHO+xiA9YFglrTZ9R2HcPwZfxZn6vcfVcn8x///7s/QA1fujRvxvMYwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628232207&quot;
+        title=&quot;20210628232207&quot;
+        src=&quot;/static/ce257271f8d41797d8e17761eb242932/efc6e/20210628232207.png&quot;
+        srcset=&quot;/static/ce257271f8d41797d8e17761eb242932/12f09/20210628232207.png 148w,
+/static/ce257271f8d41797d8e17761eb242932/e4a3f/20210628232207.png 295w,
+/static/ce257271f8d41797d8e17761eb242932/efc6e/20210628232207.png 441w&quot;
+        sizes=&quot;(max-width: 441px) 100vw, 441px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We can choose to represent our hypothesis function in the form of vectors, in many programming languages such as MATLAB and Python, using a vectorial representation increases the computational speed due to the way in which they are designed.&lt;/p&gt;
+&lt;h2&gt;GRADIENT DESCENT FOR MULTIPLE VARIABLES&lt;/h2&gt;
+&lt;p&gt;Let n denote the number of features given in the data set. Previously, we had n = 1, which is just one feature, but in this, we may have more than 2 features. So the Gradient Descent algorithm has a minor change such as this:
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 522px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c3f3fcb69aa477599049a882212464a3/29492/20210628232255.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 18.243243243243242%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsSAAALEgHS3X78AAAAlElEQVQY06WQ2wrEIAxE/f+/7LaW6ha8X0rR2Rja0vcdCJoJOYMK7x3ksmDbFNZ1hVIaUkporRFTQmsNt3rvXFfD9zF/lwghwBgDay0yAaZpwmeesX939mqt8N4jBI/zPHFQH2NEKYVnT8AlkVPmQcmZgTPBlFIcUshP5A3ACB7LlUDOOWQ6h3+/4AaLWg/8q/dX/AD4hTflfwSJtgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628232255&quot;
+        title=&quot;20210628232255&quot;
+        src=&quot;/static/c3f3fcb69aa477599049a882212464a3/29492/20210628232255.png&quot;
+        srcset=&quot;/static/c3f3fcb69aa477599049a882212464a3/12f09/20210628232255.png 148w,
+/static/c3f3fcb69aa477599049a882212464a3/e4a3f/20210628232255.png 295w,
+/static/c3f3fcb69aa477599049a882212464a3/29492/20210628232255.png 522w&quot;
+        sizes=&quot;(max-width: 522px) 100vw, 522px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The following image compares gradient descent with one variable to gradient descent with multiple variables:
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 581px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0319ad7dca1784b8c371241b82d599b3/92d15/20210628232303.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACHElEQVQoz21TyZabMBD0//9PDvmAHJJM4ok3bBYbr4ANAoZFQiyVkvw8l4T3CiGp1V1VamZCCGwdB77vIwgCeJ6HJLnDPNM4YjIfdYXU3WHnuozd4nK94SPPUd+u6MsCkBLTR4lpGjGrqwqu68HfH+DzgEdUUj0TvlDkyLIMYRhCiBwwhbiGcwg4K2D+E/C2ANdmehiwWy7hbzbIfRfK3VpGyMUTDBq1huZ317aoWwlVFHgw7h7HaESGjiorMm6PB8ympka6WUGczxiqD0hWui4XaC5nyCvBoM7boTOyyGycJvRMfHmfI6Y9xemInCgpX0Y3zCBbS18RHX2oeDjaOih3DtpDwMQn6MCD6joMk3UUPVXFUYwkfkLc76icNTqynL1MR55ZeaDJ/eoP4q9fUPz6YYsZyTXHmod1+sDI2EGkjH3GD0b2co6Re5Zhb5hw0tU1GvpzOexRxREU1wzzitLb+RuawEdFFS3jzscj0iRhoQJNWaL4/Qa9XjJhr1lRWKN7BhdRhGgfoExTNKsFKqKhZM0L6zn29HQkEvrekIgO9+izFPIUYuDcSh7pCZQE2sYmfNDklJd091zk14tlYfxUTKTIvHvccVu8I99uIPc+JPdqzof1gglptFLqs+f+95h1uZhDslVak5CMTps1xDG0c0mYW9bfv1Hy6xAT/wO2CV/gG+p8tLI1xz6JbDeYvhvosflbNC9motd/AVO5PsZkTv7IAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628232303&quot;
+        title=&quot;20210628232303&quot;
+        src=&quot;/static/0319ad7dca1784b8c371241b82d599b3/92d15/20210628232303.png&quot;
+        srcset=&quot;/static/0319ad7dca1784b8c371241b82d599b3/12f09/20210628232303.png 148w,
+/static/0319ad7dca1784b8c371241b82d599b3/e4a3f/20210628232303.png 295w,
+/static/0319ad7dca1784b8c371241b82d599b3/92d15/20210628232303.png 581w&quot;
+        sizes=&quot;(max-width: 581px) 100vw, 581px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Note the variable “j” that goes from 0 to n — that is, it iterates all the way from the bias term till the last feature(n). We compute the partial derivatives with respect to each of the features and we update the theta values — the parameter vector. There’s an issue here, do you notice it? We are iterating the entire feature space, computing the gradients, updating the theta values in a single step. And, we inevitably repeat this until the change between these theta values is significantly low. Now, that makes Gradient Descent perform slow. Like, really so slow that you get the urge to just stop learning Machine Learning and go back to your comfort zone. Just kidding, let’s look at a few ways we can improve the overall speed of the optimization algorithm.&lt;/p&gt;
+&lt;h2&gt;HOW CAN YOU SPEED UP GRADIENT DESCENT?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We can speed up gradient descent by having each of our input values in roughly the same range so that the contour plots which are highly skewed can be brought down to circles so that the gradient descent would find it easier to get to the global/local minimum.&lt;/li&gt;
+&lt;li&gt;We can ideally choose the range of our input values to be between -1 and 1. We can modify the input feature(s) values so that all of them roughly fall in the same range throughout the entire dataset.&lt;/li&gt;
+&lt;li&gt;For this, we can use one of the two techniques among a gazillion others. Feature Scaling or Mean Normalization. We can go about writing a whole book upon just this single step, no wonder, there are many already out there. Anyhow, let’s look at what do these two techniques do.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feature Scaling:&lt;/strong&gt; In this method, we divide the input values by the range (the maximum value minus the minimum value) of the dataset resulting in a new range of just 1.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mean Normalization:&lt;/strong&gt; In this method, we can subtract the average value of the input feature with the input variable and divide it by the standard deviation or by the range of the input feature. Note that dividing it with the standard deviation with yields different results compared to diving it with the range. For example, if xi represents housing prices with a range of 100 to 2000 and a mean value of 1000, then xi = (xi— 1000)/1900.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now that you understand a couple of steps you that can take to speed up Gradient Descent, how would you go about ascertaining the convergence of the optimization? Did it really learn the parameters, did it reach the global minimum yet? Or is it taking tiny, baby steps still towards the global/local minimum? Or did it just shoot off the contour plot to infinity? Let’s answers these questions&lt;/p&gt;
+&lt;h2&gt;DEBUGGING THE GRADIENT DESCENT&lt;/h2&gt;
+&lt;h4&gt;The visual way — Plot the graph&lt;/h4&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 500px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8d5a41143f943d54509b872dbf12aac2/0b533/20210628232404.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAABVUlEQVQ4y62T2W7CMBRE+f9/4wEhkRcWUUAkwTT76tjDXAcRKKVNKyw5suXo3Bnf8QQcXdfhHcNai4ksgiBAHEdo2xZ1Xf9pNk2DqqpgjHFQByzLArtdQqXGHYyd4kxUCVhrPQBPpxCeF/3bqji7AaVCksRYLlP0qq2rOnbKENsPCvM8oeWU4HvguCY8AbXucD4H2G4/2ZgBOLarT8DD4UCFKZQqCH6DwrIs4fs+oijC8fgGhfLJspwqM4QhGAF7heJXlS+BZ3rNshhkMkI9UDreQ4cr+G79osu5syxjv7c3lffza1yMGYB13bgs3oCSdIH2IQXYJ8iWhSGFe7X2B+vd49MTuUHgO+ltW/MuFZVWBGsGPua65bnBep0wXiX3GouFwmqVubXnhYxcMgCFXhTF9X2aq33r7nU+nxHyQaDCdDrDZrNzqsMwQppWzpFSMf/NHPACMPeZoUQKYb0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628232404&quot;
+        title=&quot;20210628232404&quot;
+        src=&quot;/static/8d5a41143f943d54509b872dbf12aac2/0b533/20210628232404.png&quot;
+        srcset=&quot;/static/8d5a41143f943d54509b872dbf12aac2/12f09/20210628232404.png 148w,
+/static/8d5a41143f943d54509b872dbf12aac2/e4a3f/20210628232404.png 295w,
+/static/8d5a41143f943d54509b872dbf12aac2/0b533/20210628232404.png 500w&quot;
+        sizes=&quot;(max-width: 500px) 100vw, 500px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+One effective way to visually check if gradient descent is working properly is by plotting. To debug the gradient descent, make a plot with the number of iterations on the x-axis. Now plot the cost function, J(θ) over the number of iterations of gradient descent. If J(θ) ever increases, then you probably need to decrease α.&lt;/p&gt;
+&lt;h5&gt;Automatic Convergence Test&lt;/h5&gt;
+&lt;p&gt;Declare convergence if J(θ) decreases by less than E in one iteration, where E is some small value such as 10^−3. However, in practice, it’s difficult to choose this threshold value.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 562px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/99874912658b2508ba20a37ddf111a07/6e88f/20210628232432.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.70270270270271%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABzUlEQVQoz3VSi3KiQBDk/z8tUnWCEhGCJBEEBVEiuAvC9vUuF88kla0ahuLR09Pd1syewV+tsNlEsGczOPM5FgsXrvMHURTC959h2zZW/Ga5XMJxFrjdbtBHKWXq8VhheCTYHq+vJ5xONaQUyLIrdruWJZEkAte2weVygRACTdNgGIYvgI+gVhTVyPOKgPX9YRiCbICiAIF6/Ha+szOAdd2jJpaU+meFcVRkrBDHimwUh3XYbksjg147WAdc28E2SX+srbvVNFd8fAzoe4WnpxHns0LXKVTVVEnSoT7XiF5e4HnPeH9/M6BSyAem5mo6GQoyGw27w0EZQP1SszseFQ2QxoSu64x2+n4Ybqb3fceSdzDdraIQZkqegyBT19W2oEn6WY9NtIfLlYMgZK0xZxIcpsBdxLzPKdf4f+Usazn9ahwsS0lnBfUTjIygOYIf92RKDV3XaLf0PKx9H8UhQ8CEeJ7kcPWPJQFbE4kGaZqQ0YFrZyjKHbUrCZyS4cWsuyftgranaYqzps4zklhVfdXR0mZoh+O4ZMB3jMsbw5xQ/JFsQTD5a2R0IqTUzMa70zRFcV0tPpjFaaImkOeKjKYfPtf5XhPwYEL/Gfa/c3JICnvJyh4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628232432&quot;
+        title=&quot;20210628232432&quot;
+        src=&quot;/static/99874912658b2508ba20a37ddf111a07/6e88f/20210628232432.png&quot;
+        srcset=&quot;/static/99874912658b2508ba20a37ddf111a07/12f09/20210628232432.png 148w,
+/static/99874912658b2508ba20a37ddf111a07/e4a3f/20210628232432.png 295w,
+/static/99874912658b2508ba20a37ddf111a07/6e88f/20210628232432.png 562w&quot;
+        sizes=&quot;(max-width: 562px) 100vw, 562px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It has been proven that if the learning rate α is sufficiently small, then J(θ) will decrease on every iteration. That doesn’t mean to choose an extremely low learning rate which will potentially slow down gradient descent even more. if α is too small: slow convergence. If α is too large: it may not decrease on every iteration and thus may not converge. So, choose the learning rate alpha wisely depending on the data-set you are dealing with. Tinker around and plot the cost, you will clearly see which alpha value is ideal for your dataset.&lt;/p&gt;
+&lt;h2&gt;POLYNOMIAL REGRESSION&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Our hypothesis function need not be always linear to fit the data reasonably. In fact, many datasets out there follow a polynomial trend over a linear trend. We can choose to include polynomial terms as well in the function to hopefully get a good hypothesis.&lt;/li&gt;
+&lt;li&gt;We can improve our hypothesis function by combining multiple features into one. For example, we can combine x1 and x2 features as x1&lt;em&gt;x2 and make a new feature x3 = x1&lt;/em&gt;x2.&lt;/li&gt;
+&lt;li&gt;Remember, when you are including polynomial terms — feature scaling becomes very important. Because some of the features may shoot to a very large value making the curve quite unstable. Say including the feature x3 = x1*(x2³). In this case, if the value of x2 is 100, and x1 is 10, then the value of x3 will be 100,000,000 which is very huge. In this case, feature scaling comes handy to drop that value to a desired range so that the curve doesn’t act unstable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;A SNEAKY WAY TO COMPUTE THE PARAMETERS — AVOIDING THE GRADIENT DESCENT&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;We can also compute the parameters vector theta using analytical techniques such as using this: theta = inv(X^T _ X) _ (X^T * y). This is known as the Normal Equation for linear regression.&lt;/li&gt;
+&lt;li&gt;There is no need to do feature scaling while finding the parameters analytically. Below shows an example for 4 training examples.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1b67408b5a92f4ac5a6cf65a3b07ac46/1ddef/20210628232606.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAB+ElEQVQoz5WTW3ObQAyF/f//VNu3PnSSTJO2SYxtCBeDWS4Li7nvVwFxpp0+dRkhDas9e6Qjdl3bEoYhb76PLjVdXWPHkf9d1trV74ZhQKVqNVNVqNMBFQZUAlzqkqZpVl/VFbV801qv/ipEyqIkjhNaiW+gu9sNc5XDNJNmObkk+p7Pl0+f8VwPZ7/n6fEHla54uLvHeXUwxpCkCfE5puv6vwHLoeI+eyJuU46Zy6/zK4E5S+zh6QC/jjhIHHcp+/SIVwbotlr3DspjNBqkTUvRu+XdM3BpFEusEjn0a888TFzNlbZpmfoRow3zOFOoXIBCmqklSiNewxO9kbNttwH2VnpIyckEZOJflMPX4x3ZXBKZhEuXEY4X2fcpbMVRGHlVIBRGHoqffD8/M9fSru4dsLEtudVUNChbogTIu4bssxO+jlBjwXPh4NY+IsVqgx05xdJb7a7VLUB2a+LWw8725AIZj4vSBlPURH7EJUoYrz2RF1KqYlNvsqsgBxEmj7P3mdnMyrO7zc/yYWRiGLp1fFJRMCli9GQ4S5wX+Zo2CjvTNbihR5hFtMJxqXIhtWDs/hzKWaU0by7l8UgWODinbyT+I3PbLNV85C1MzpPiZXIJ7eXd0m2wl6QPQBneIc/oMsVYFEyiqM2krGm6/Q4fuf+sebvwN+iqTDfBUaElAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628232606&quot;
+        title=&quot;20210628232606&quot;
+        src=&quot;/static/1b67408b5a92f4ac5a6cf65a3b07ac46/fcda8/20210628232606.png&quot;
+        srcset=&quot;/static/1b67408b5a92f4ac5a6cf65a3b07ac46/12f09/20210628232606.png 148w,
+/static/1b67408b5a92f4ac5a6cf65a3b07ac46/e4a3f/20210628232606.png 295w,
+/static/1b67408b5a92f4ac5a6cf65a3b07ac46/fcda8/20210628232606.png 590w,
+/static/1b67408b5a92f4ac5a6cf65a3b07ac46/1ddef/20210628232606.png 635w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 551px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/72cab5af573862888d12bc56e773e6df/db783/20210628232618.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 33.108108108108105%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsSAAALEgHS3X78AAAA9klEQVQoz11RibKEIAzz/39zd563CIqAB9kGF8a3nemgNE3TUDnnsG0beHrvcZ4nYoy4rislv3mX685tgrcIwYORcTmrcRzAnKYJfd+nxgyM8SY8jgNKTYIboRKuE/yIdV3L0CyiGoYvoYCbpoa164MwFoVKKYyC5Uky9rVtUzYqhE1dJ2Usvl8vzPP8s/IlCvdCwJODQwjI8Y+wa1t0XZd+npFBt8JDBiloPcMYk0jzZrddVNyLBQsqTmXSQ2sttCi04k2emD3kFmxkEl/Xf1iXJT2o9y4p3vcdFT3RWifgIgD6RBVPH+kTMazzIYzRyUve/270AWYJHjZ0XrcZAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210628232618&quot;
+        title=&quot;20210628232618&quot;
+        src=&quot;/static/72cab5af573862888d12bc56e773e6df/db783/20210628232618.png&quot;
+        srcset=&quot;/static/72cab5af573862888d12bc56e773e6df/12f09/20210628232618.png 148w,
+/static/72cab5af573862888d12bc56e773e6df/e4a3f/20210628232618.png 295w,
+/static/72cab5af573862888d12bc56e773e6df/db783/20210628232618.png 551w&quot;
+        sizes=&quot;(max-width: 551px) 100vw, 551px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Putting it all together&lt;/h2&gt;
+&lt;p&gt;If you have made it this far and understood most of it, congrats and give yourself a pat on your back — because you deserve it! You have learned everything that you need to practically apply these concepts to a real-world dataset and generate a predictive model. You have learned about the Cost function, the optimization algorithm — Gradient Descent, computing the parameters analytically, choosing the learning rate effectively, and also debug your algorithm’s performance. Stick them all together in your favorite programming language — You have linear regression.&lt;/p&gt;
+&lt;p&gt;It was a great journey so far, and you have just breezed through the tip of the iceberg. There’s a lot more you can learn, and believe me, there are many researchers out there who spend their entire lifetime squeezing the point one percent performance out of each of these algorithms, trying different ways to implement hoping for an improvement over the previous version. So, don’t worry, you can get through it with a basic understanding of these concepts.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;So, never, ever stop learning — no matter what!&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[Introduction to Machine Learning]]></title><description><![CDATA[These are the notes that I have personally taken while I took the Machine Learning course taught by Professor Andrew Ng from Stanford…]]></description><link>https://elastic-meninsky-aa7c74.netlify.app/blog/Introduction to Machine Learning/</link><guid isPermaLink="false">https://elastic-meninsky-aa7c74.netlify.app/blog/Introduction to Machine Learning/</guid><pubDate>Thu, 06 May 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;These are the notes that I have personally taken while I took the Machine Learning course taught by Professor Andrew Ng from Stanford University over at Coursera. It’s free to enroll in the course, which covers the intuitive Mathematics that goes behind classic algorithms such as Linear Regression, Logistic Regression, Neural Networks, and K-Means to name a few. In this article, I shall provide a definitive guide — A simple way to understand the classic Linear Regression Algorithm from the ground up.&lt;/p&gt;
+&lt;h2&gt;What is Machine Learning?&lt;/h2&gt;
+&lt;p&gt;Arthur Samuel described it as: “the field of study that gives computers the ability to learn without being explicitly programmed.”
+A more formal definition has been given by Tom Michel as :
+“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.
+Example: playing checkers. E = the experience of playing many games of checkers T = the task of playing checkers. P = the probability that the program will win the next game. In general, any machine learning problem can be assigned to one of two broad classifications: Supervised learning and Unsupervised learning.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Supervised Learning&lt;/strong&gt; generally has two types of problems: regression problems, and classification problems. When the data is in input-output pairs, you design a learning function that maps a new input to an output based on the input-output pairs learned earlier of the data you have gathered.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unsupervised learning&lt;/strong&gt; is when you are given data with no labels, we tend to notice/learn a pattern within the data using Algorithms. For example, grouping the news articles which are similar under one card in Google News. Or, trying classifying your employees under some category given their performance, punctuality, and other features.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this article, let’s zoom into Supervised Learning, mainly, understand the Linear Regression Algorithm in depth.&lt;/p&gt;
+&lt;h2&gt;Supervised Learning&lt;/h2&gt;
+&lt;p&gt;We are going to model a function to map the best fit line to the given data. For example, predicting the housing prices given a data set of 100 houses sold at different prices. We shall model a linear function and use it to predict a new data point with a given set of features. This is with respect to Regression problem statements. Whereas in a classification problem statement, we have discrete output values of which we are predicting using the model based on the data give. For example, the classification that someone is suffering from cancer — Which is either a 0 or 1 — A Yes or No.&lt;/p&gt;
+&lt;h2&gt;Linear Regression — An In-depth Overview&lt;/h2&gt;
+&lt;p&gt;It is always a best practice to understand the entire Mathematics that goes behind this algorithm in a step-by-step, piece by piece fashion. Straight up pulling off the Hypothesis function, Cost, Optimization and, all the good stuff that goes in a few paragraphs might eventually leave you with utter ambiguity. Therefore, we shall go one step at a time. Let’s get started.&lt;/p&gt;
+&lt;h3&gt;MODEL AND COST FUNCTION&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;So basically, we are given a data set that has input and output pairs. Some basic terminology related to this data set is this:&lt;/li&gt;
+&lt;li&gt;m = The total number of training examples. Let x denote a feature given in the set, and y denote the output. Then a pair (xi, yi) is called a training example. There may be multiple features, x1i ,x2i..xni which has only one output; yi. We now describe a hypothesis function h(x).
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 356px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e6dac20a9d5c2e01dfb5e8d8a9992b21/50ac3/20210624232021.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 73.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAABaklEQVQ4y52TW2+CQBCF+f//yhghCqIWKC8touAFFbkFBBROdzYhRQoPZZLJTHbhyzk7uwI6Udc1r1VVIc9zFEXBK+Xj8cDr9Xr7rhvCEDBJEgRBwJP6NM0QxzHCMBwPzLIMmq5jtVQgihJc1+Vro4BRFPE+TVOoyxUipo4sk8pRQFJCUALY9o6DqSflo4AUpIhyNpvxStBm/9/A5/MJz/Pg+z5TaONyufABEXQUkK6H6zgwDAPKYoHpdIrD4TQeSPdwx5RJkgRd1yAy21/fFjvbX2CT7f+E9mbX8vV65ba32y23e7vdWgqrN2iTQhvSZ4OsTyYT/lKGo/5ruYGVZYHz2eMvwrIszOdznI5HptKGqqr4NHQorMqygqUss8vuvB2BQPQGdjq6ME2TDcLkUy3LkoNpOHGcsHedY7PeQBJFrFdraNoH/HswDAzudzj7PbNXDJoLgxA79k0Uxb13V+hbbK91s2+/3f8ANC6O+QsvpvsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232021&quot;
+        title=&quot;20210624232021&quot;
+        src=&quot;/static/e6dac20a9d5c2e01dfb5e8d8a9992b21/50ac3/20210624232021.png&quot;
+        srcset=&quot;/static/e6dac20a9d5c2e01dfb5e8d8a9992b21/12f09/20210624232021.png 148w,
+/static/e6dac20a9d5c2e01dfb5e8d8a9992b21/e4a3f/20210624232021.png 295w,
+/static/e6dac20a9d5c2e01dfb5e8d8a9992b21/50ac3/20210624232021.png 356w&quot;
+        sizes=&quot;(max-width: 356px) 100vw, 356px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;The hypothesis takes in the parameters theta with which we compute the best fit line (regressor line). When we have a single feature, say, x, then the hypothesis h(x) = theta0+theta1*x.&lt;/li&gt;
+&lt;li&gt;A cost function is used to measure the accuracy of our hypothesis h. This takes the average results of the hypothesis subtracted with the original output values. Here is the representation of the cost function:
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d3e68fde723ce2062d709a7c45d47634/3996e/20210624232054.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 57.432432432432435%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABy0lEQVQoz2VTa2+qQBD1//+tfmnTXNNqrg9ArGIVReQhSAV2zp2HmCZ3ksnCMnP2nDPLCBx932tKENEj9U2ff0fXES4XwtcXYb8nHI+E1YqQZdYzkqKiKJCm6RPQYgCFNkrudoSXF4fx2CHPba+uDTSOCc6RAWZZxqdetNkxSl3eUZXtEzgMCa+vDvO5gUp6HmG9JmUs7GSVUEABK4oS7Q245j1KPj2KgKYxQClOEsL9bk0iWWSKbNkXlsL45+fBMEkyTD/XSOJc5ZdlySwKlpE/WQ5RloTTydgJ2GZjGUW/AIVdHMe43Sr2Za+AshdFZz4dWiiyBKAoLKuKcD7bgGQVH4XlyDmH/8Op3CQBvr8dS4XKFS+FiQxAWIqX262th4PtjZLTCZPJFH7g8foBzw9YwoELjlgFC8zmf9G2NiABTVPC9UoqfXiW7PvHUIZrEoY7zGYhT9LH29sfvL+PeZIr+L6P6XTCjCtlGgROWQrgcJXEw6Yh9foJuNnu8fG5xGKxhO8tGXyGxTLgpoyZFAompWwvhLBYEgQGZvfRzBrZX9Lx1XBssGP6Tj0c/pi67vlbz00ds20ZoGMPO2bW8dVpdS/PO86KD2nwD6R8SoQOcBhjAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232054&quot;
+        title=&quot;20210624232054&quot;
+        src=&quot;/static/d3e68fde723ce2062d709a7c45d47634/fcda8/20210624232054.png&quot;
+        srcset=&quot;/static/d3e68fde723ce2062d709a7c45d47634/12f09/20210624232054.png 148w,
+/static/d3e68fde723ce2062d709a7c45d47634/e4a3f/20210624232054.png 295w,
+/static/d3e68fde723ce2062d709a7c45d47634/fcda8/20210624232054.png 590w,
+/static/d3e68fde723ce2062d709a7c45d47634/3996e/20210624232054.png 648w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Our main goal in this is to minimize the cost function to get a very close hypothesis to the data set.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;COST FUNCTION — INTUITION&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;When we map the cost function with the x-axis as the input to the hypothesis and the y-axis as the value of the cost function, then the resulting graph would be an ideal parabola. As said earlier, we need to minimize the cost function.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 304px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8916dc10e1ec935068050a3007594a15/c1724/20210624232139.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 95.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAACqUlEQVQ4y3VUXU8aQRTlNzd9bpO+9KV9a9LGp9qk1BjLg6Yaa1+QlfIpRZBdVERYFBBhkQ93UeF0zi1DF9CbkB3mztw595wzE5hMJhiPx2B4noejoyPc3d3Jf+YYrufK3OPj42yOXz3udDqzPQFMYzAYIJvNIhqNol6v62nZdHJyIrlyuYzRaDSXY6TT6dmeQKvVwunpKQzDwP39vUyelUryJfJutwvLsnB+fo7j42P0+33JEe3Dw4P8Li4uZgcEHMdRkB3U7ArC+xF1WgrfvgaR+ZPFYfoQyWQciWQK++Ew4vGEdBCN/ka1aqOkDub+uYLkTYce53N5Qc0gAs8bwXU9GbML/te8VyoVNJvN/wUXBWDUajVkMhkp8Fzo9YlEYsafFHRdd0m11vU1crkcyK/mUuf96ygQufUfsFRQt0J+dnd/LqH3r6Fd/OjmEPqaEU+FQiGsrKzMIfRbhrGzs4NGo7GMkBZot9sYkk+VaN/coKnapl10Qcba2hry+bzM07ccL3YQ4Kn0FlWlGH7EYWUV+lAHLUJFuZ6iXV1dLRfUKvuDRYbDofJdHFV1iN7ETsgbgzl9EfxCPakyNxHNQBX9tbWFyN7evxt0dibzvGq16UF+BzxZUCfoQaI31WPx5vUrFBRvBdOSe725ufmkR+d9OCWebZmmqdRrwrZtQVBWt+Hzp494+/IFQuvrqF1eCiU3SjyKyY50+3O2oUDpVArbP7bFX7e3t1I8YhygpL4f3r+DrVrt93qSI9c9NXacDnrTR0MK6jZtu4ovq6vY2PgOI2IoBG0YBwcIBoOIqSuWSCbFd0XLVLmOsldLFeyjop410ypisoiQnJEjq1icPVNspet0YRYKYmTm2a5WfTyeyBrNaYBJmpS/5x4ABgvFYjEUVGH//OL6vxutn6E9fjRYAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232139&quot;
+        title=&quot;20210624232139&quot;
+        src=&quot;/static/8916dc10e1ec935068050a3007594a15/c1724/20210624232139.png&quot;
+        srcset=&quot;/static/8916dc10e1ec935068050a3007594a15/12f09/20210624232139.png 148w,
+/static/8916dc10e1ec935068050a3007594a15/e4a3f/20210624232139.png 295w,
+/static/8916dc10e1ec935068050a3007594a15/c1724/20210624232139.png 304w&quot;
+        sizes=&quot;(max-width: 304px) 100vw, 304px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 411px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c863b2911101824cfcfbd6f8c7a3b757/2a432/20210624232145.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAB/klEQVQoz3WS626bQBCFef+H6RtU6o+qUlXFTdM0aezGF4wNGMzFXJZd2Pm6rBUrP9qBgb2cmTNndgMR4c06FFEZk5dn3tuMeY/rGUi6jCg9+LlhxCGY32BeKIuCMIw4pDGbNGR1eOUueuA+fqZsKx80TiNNfWEf7knSlOV+zddwwSJ65Eu5QFvjccHM3Pc9WmsmmcBeq7nYjm/Zd9b5lq7vMMb4ddUr2rZFZpxz44g6q24KfIVt19E5v0m3PUkW83RZsh4jeq0YzXiV5xLXdc2/bE4aDMNA0zSuiv4qTRmekmf64Uogo0UmixoUVVWhlLoltGJv/X3zYFCDlzDqiU2zY5mtyKXiE3d0k+Je/SbVOZMefXVGG5pLw/8ssFifcLfbEGURhan5qn/yQX1kZ46kFL6SOZk/YackP599C2Kd0egWrbQ/A59wRUh8clclzZxeOF9K+sbJVVz/rtfWWrS5BqTHlMxhs1POS7Vmfzpycad/yjJ6145gruCXXVPYmr2r53O34FmvCSUhGXM2ckTZYb5sHMUlMgXFVJGPJds2IhsKT8ooWNfroJLGB+dUPviFLQ+y4ocseeSVR/lDbVuysSCT0uNSzu7buKfz88NMRIl2rMHt9osilpyTFOwk9uOtI9g7slIuLCWkkNrvJ3Imdd7LwCDGYyNJ3VjzF8ddTupZ6cF+AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232145&quot;
+        title=&quot;20210624232145&quot;
+        src=&quot;/static/c863b2911101824cfcfbd6f8c7a3b757/2a432/20210624232145.png&quot;
+        srcset=&quot;/static/c863b2911101824cfcfbd6f8c7a3b757/12f09/20210624232145.png 148w,
+/static/c863b2911101824cfcfbd6f8c7a3b757/e4a3f/20210624232145.png 295w,
+/static/c863b2911101824cfcfbd6f8c7a3b757/2a432/20210624232145.png 411w&quot;
+        sizes=&quot;(max-width: 411px) 100vw, 411px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;For the data set of (0,0),(1,1),(2,2),(3,3) the theta0 = 0 and theta1 = 1 is the global minimum of the hypothesis and it fits perfectly which is not always the case — As we shall see the optimization later.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;A brief look at more complicated Hypothesis Functions&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;So, as the number of features of the data set increases, so does the complexity to visualize the graph. So, for two features, we can form a contour plot of the cost function. And for a linear regression problem, there always exists a global minimum.&lt;/li&gt;
+&lt;li&gt;The plot of the 2 features cost function may look like this below which is an Elliptical Paraboloid.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 474px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/abfcae5c9961a13fa272d8a43b38b887/5595f/20210624232245.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAACo0lEQVQ4y21T30tTcRTfa9BL/QspJhWB+eBL+eBTv8vKMtlohQ8RRRhRBhGGGBIpxephcxN0VvRWWAihWYIZmPRrzmQ5Y0bgfrjd3d27u3vvPn3P9+47t9mBc8+55/v9fs7n+z3n2MAkn8+XKUksFkMkEkE4HEYoFMLychhLS7+wsLCAYDCItbU1iLOl1iacSslmFciyBDmdRlqSmVWQSklMk0gmE9A0FZVkOCB9TNMsBIW/DmxwVaDnJWhGBmZJ0ry5DiTAOWAmk2FZkyxggWm6gr9/XiL05Qbmp+yYnziGwNuDCIw3Y3HGiaVAF6KrH2DkLRBBqMhQURT2ZlFYfgJf39kx66/CtHcbxgeqMearxSt3LcY8NZj0VuEj09nnNQh+vgODUTYMnYMWAbPZLOLxGA+k06sY8zbBNdCAS8NH0epvRfMzJ448PY/mEQfahlpwbfgQvI93YfLFOf4EZYBENc0ePh6Ps4UcD356P4juh3W4MNKOfb5b2OnuRbWrF7s9PWgavI4r/rO431+PxcA036/ruXKGsixzQNM0eFBVVPT3ncJQfy1G3XUY9dTjjbcBr9172H89XPdq4PN1wiqowYgY5YC6riORSPBgjvkkUz++YcfVFux/cBoO13E4Hh2G/clJ7O1uQePNdqysWm9OYBsAKUCNTEFSTdP4on90AltPdGCzswtbLvZgU9ttbLd3Yu77T6tX2T5xpqzKuVwO0WiUX12Aie6amZ7DGeddNB7owOWOPqz8XrGuWmhmIkNF1Qs3s5WODS1SC0mSVNhkFJvW1NWiTwQosaqqvIfpDCkxtVXOoigSAZJVmTVYs+lMZTnDAVKpFE9KBEqlOCmV80hWXIEO0vsSuCgAaeneDbNcuiB8kV2MlqgiWZHsf6D/AIOzOYY0nAywAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232245&quot;
+        title=&quot;20210624232245&quot;
+        src=&quot;/static/abfcae5c9961a13fa272d8a43b38b887/5595f/20210624232245.png&quot;
+        srcset=&quot;/static/abfcae5c9961a13fa272d8a43b38b887/12f09/20210624232245.png 148w,
+/static/abfcae5c9961a13fa272d8a43b38b887/e4a3f/20210624232245.png 295w,
+/static/abfcae5c9961a13fa272d8a43b38b887/5595f/20210624232245.png 474w&quot;
+        sizes=&quot;(max-width: 474px) 100vw, 474px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;And the contour plots of the above look as below.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8faa89aac8a4ae07b0c3f055eaac1b41/27524/20210624232305.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAABs0lEQVQoz2VSSZLbMAzU/1+US96QHCZzysTWPrIkiyLFnWIHoJMpT4IqFQViYaPRFZ4s54x5niGlxL/GsWdb17XkKqU+xauUIvq+x6/LpSQMw1D8oR/Qti26toO1tiTvu6C7BiPndD2u1yvqpsE0TeWBEAIqRuOcg/e+XIQQEelk3wf6KMavS6mxC4d1sRAqwiUPpw8Eyksp4TzPklft+/7fOME//DMCVqfyv6wC0xxRXxQhM5AOiKdDsu5TbcVj/mEJZ8ro24S3nxn1NaOpMyF+NFy3A817wo8Xi69fOsrRUIHiySIa+8FjaRgDYGSCWjyaS4TYMrTOOI5Mz6Qyktg2eCpWHvj+7cDryx23W8QRT6o3iM4/EI7jDE3NAs2QYyxIn42b8Y2SCu44qL1DN/MkHuLucRcZlrhJ0YOZK0tBPp/kAchdYxzHsjljTBllE4KIJ8TeYt09FiqTMsPwJEQjreWBMBIq1hJvlU+tDcliKg3ruoagRmUpy4JDa1qShtwMbneFVdDm9wOCAGx0sgQrTuamjILlsxFX2ugPkv8qgCXFcoqFFtq+ceT74pePYiyd36/xBtKNiwWJAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232305&quot;
+        title=&quot;20210624232305&quot;
+        src=&quot;/static/8faa89aac8a4ae07b0c3f055eaac1b41/fcda8/20210624232305.png&quot;
+        srcset=&quot;/static/8faa89aac8a4ae07b0c3f055eaac1b41/12f09/20210624232305.png 148w,
+/static/8faa89aac8a4ae07b0c3f055eaac1b41/e4a3f/20210624232305.png 295w,
+/static/8faa89aac8a4ae07b0c3f055eaac1b41/fcda8/20210624232305.png 590w,
+/static/8faa89aac8a4ae07b0c3f055eaac1b41/27524/20210624232305.png 646w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;GRADIENT DESCENT: THE GATEWAY TO THE GLOBAL MINIMUM&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;By using the cost function, the hypothesis, we use the gradient descent algorithm to slowly but surely get to the global minimum/local minimum of the given contour plot. The main aim of this is to:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 474px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/efe287503ce175f86c4f9ba96a0dc25c/5595f/20210624232414.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.75675675675676%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAABUElEQVQoz51Si07CQBC8//8oYjBSJWCkGpLSB0IfXLG9Fq60vMfbM0XEKsZNNr293dudnSk7HA74yY7HI67ZZQ3r97q4MzroGAaM+w4cz8XzywCtmxZsdTbNAXqqpv/YR7f7gPZtGwPzSceyKE5N68asKCSiKMLUn2LGZ8jyHEnyBh5zLFVuPp8r50jSBJPJK1zXhRAp4jjGbrf7RFk3FJmA6o//Wo2udhZGAdbr6luCuK3X2O8/kJzfna/5hcPfilarlVpzAtu2T/e0ZqG4q+PNZoOqqtTQPRaLBRjnXD9K0xSWZSEMQ4V4Dd/3NU/EWRAEGI1GGA6HGI/HOhZCIMsyOI6jaylH9Yw6l2WpJ2+3W32m6YTO8zztpmlqFFLKkxD0pcGEkCxXYuqVr5FOTQj9X/5PLQpNqqqyUbHzh025JmdSLjWHl6I0CdWk7GXuHcjYU1fe5B/2AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232414&quot;
+        title=&quot;20210624232414&quot;
+        src=&quot;/static/efe287503ce175f86c4f9ba96a0dc25c/5595f/20210624232414.png&quot;
+        srcset=&quot;/static/efe287503ce175f86c4f9ba96a0dc25c/12f09/20210624232414.png 148w,
+/static/efe287503ce175f86c4f9ba96a0dc25c/e4a3f/20210624232414.png 295w,
+/static/efe287503ce175f86c4f9ba96a0dc25c/5595f/20210624232414.png 474w&quot;
+        sizes=&quot;(max-width: 474px) 100vw, 474px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;So, we have the inputs which are theta0, theta1,…thetaN. Here, we update these values according to the gradient descent. We have a learning rate alpha set to some tiny value such as 0.001 which can be varied according to the data set and multiply it with the partial derivative of the cost function with respect to the thetai. (i=1,2,3…n).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 569px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/291a12919e2839381000543654f37b8a/854dc/20210624232432.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 53.37837837837838%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACFUlEQVQoz22Ty2sUQRDG95/Sg0fBnEQQDQgiSvAFgiyKKIIXURA8RVEvgoiG3MRDIERjxFyWjeKCu3iJJnF3Q9bdZB/z6J3px/ys3phkAunpmu6qqfr6q66aAjKyLGNn3dnn9bwN58hE8PYDfAoHAsnjnMVqjUlTjNVYESeS7fr4lyM/PEZhPyMnQAZnJNDmAmXvNMgkXW2iKlVMJAeJbqz4e9Y7DP3GG6x8MGLT2XbglmlT/fCOjzMv+KznaTAHpYfoC8eIx45gH12D9nc5SabZBt1NOU0ThkqQgh/w+znt5iTN6eP0J8b4eeYwi7OHqLgTdHun0Y1xWD6LWT5PPbhDzTVIjM/ejrIpNNebhIOYjaRKTRdZja7TjG9J8A1Uv0gUTjDfuUhxZZqrm4s8zuaYYpY3LHCZJU7aDu/1/2J5wHanQxBE9FWDCr+4O+xyaSPiXLdF0dV4SplnlLjNJx6Uprg/s8Cp8jJHF7rcXAtoyQVZLddl7V7KSZKg5JL9EfUA3n6FJ1W48gUmXsH4a9FbK74iMIxZVyGVpTWibzUpVkoURRhj9oqSSmsEwYAgDNAqkqoqAY8lZcv0vTIvJ/8QJpKVL5gRJiM2GiW+Sql9fVzIK75SqfTeIAgJhynDrb+YzTrWxaSJIo7jEUAka5KkgusYDAa5nyDX2PnR6/WEjTgIcydBRkTLQV6ssMv753vQr/8AT5w04EzGFVIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232432&quot;
+        title=&quot;20210624232432&quot;
+        src=&quot;/static/291a12919e2839381000543654f37b8a/854dc/20210624232432.png&quot;
+        srcset=&quot;/static/291a12919e2839381000543654f37b8a/12f09/20210624232432.png 148w,
+/static/291a12919e2839381000543654f37b8a/e4a3f/20210624232432.png 295w,
+/static/291a12919e2839381000543654f37b8a/854dc/20210624232432.png 569w&quot;
+        sizes=&quot;(max-width: 569px) 100vw, 569px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We are taking tiny steps from the starting point as shown with the view of a direction which makes us go down the maximum.&lt;/li&gt;
+&lt;li&gt;An important constraint to keep in mind to achieve a good performing Gradient Descent is choosing the right value of alpha. If the alpha is too small, it may take much time/many iterations to get to a global/local minimum. If the alpha value is too large, then the gradient descent may diverge and shoot off the graph.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;ALGORITHM INTUITION&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Taking into consideration having only one parameter say Theta1, and when its cost function is plotted, we can clearly see the gradient descent in action.&lt;/li&gt;
+&lt;li&gt;Our formula for a single parameter was to update theta1 until convergence as stated in the algorithm above. In that, we may have two specific cases:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 500px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4f9ec7109e853c4dcb61cbf14538fb8a/0b533/20210624232500.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAB8klEQVQoz42T23LaQAyG/f6v0pvO9KZXnSZt0iblYMoxYE4O9oINxOZgjE9ftTYMzV12RrO7WumX9EtrUBSQJCJnOIuk6e0ue6HfZV13tVxyTtKbTqR8CbaoXw8YxenE2V0Qb7ectxtS12G/eOXoeyRy1sDaoYKD5aBPOp9WgFl2A5SzatYx8jAgEufTbkdyPBK+9HkdDfE9j0i5pWEJuN9BHOO7Ltmf3zd9npNrQKlOzaYYqRiNTZNhs0Hv/jvTeo2XH3fYIpOf96zFCAEr1h5INV4Qkm3W0DZLfZmppmgXoiSYkUvK3myG0+uytG1yiZyLQSaRteizdriWPJ2McVYrVvacuQT0GzXcfg+1WOAIvwYfWNfS9NoI14nOSFZ4iknlnF+slAQzigup70SctT6/gPB/U9p/SexZNQ3RsZqEEj1A3X0TDuVhPBgwMpt0np/oNBqYrRbdbo9Ot4stpWS6AeLAYc9aKbLhAFaKwltSCJ+5vo+HKH9dAfZbJgNphvn4SKdexxoOhXOTdrPJeGQRn+MqmyhiE4ZC5BjmkxJUAzGxqhmVYGXJkb8iWrrsZe4OMiqR7EeR0HGIN5t3JU+mU3xp3uHpgf3nT+y+fiGoPfN2OFRd/lBTNM+XnxJIhpGUnwZvePNZOcP6Q2i9ZVn8A6dtRaIcvqTrAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232500&quot;
+        title=&quot;20210624232500&quot;
+        src=&quot;/static/4f9ec7109e853c4dcb61cbf14538fb8a/0b533/20210624232500.png&quot;
+        srcset=&quot;/static/4f9ec7109e853c4dcb61cbf14538fb8a/12f09/20210624232500.png 148w,
+/static/4f9ec7109e853c4dcb61cbf14538fb8a/e4a3f/20210624232500.png 295w,
+/static/4f9ec7109e853c4dcb61cbf14538fb8a/0b533/20210624232500.png 500w&quot;
+        sizes=&quot;(max-width: 500px) 100vw, 500px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When the slope is negative, the value of theta 1 is eventually increased.&lt;/li&gt;
+&lt;li&gt;When the slope is positive, the value of theta 1 is decreased depending upon the learning rate/alpha.&lt;/li&gt;
+&lt;li&gt;The main point here to be noticed is that, as we get closer and closer to the global minimum, the value of the partial converges or tends to zero. Which possibly gets us the best parameter for the hypothesis that we choose.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;LINEAR REGRESSION IN ACTION&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;So, the entire algorithm is based off on two main concepts here: The cost function along with the hypothesis and the Gradient Descent Algorithm.&lt;/li&gt;
+&lt;li&gt;When the gradient descent finds the global/local min of the given hypothesis, we would have a close fit theta values to predict. More the features, more the theta values. The entire gradient descent for 2 features is summarized below.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ef5cadd2b3013e19c69f64df97e75706/d6331/20210624232536.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAABTUlEQVQoz31Sa3OCMBDk//+zOlpn7Ccr8rDQ4SFVQsJDwO0tLRYt7c3cEC7J3u5erDzPEUURlHyNMWi7Dm3bIngLkKYpdKFRlSXqupGsoZQC43q9/kqG5Th7bDYv8DwPSZKg61qwydNiAcdx4Hs+PNeVmkIcRzhmH/8DltI9/+46BjezLMP5fMZcqIfz03vW9IeptYbRBonIPfj+wDwMQxRFgSiOEYs9q9XzUHf2zgCeirKxuTVHve/7AZiH6CtV9OJtc7ngdDqJFS6qqhqadFLn+iJ7s4AMAnIw/I7BNb1lBkEgIPVtj7Wmab4Ap3IZxmiZbIHt9hWuDINMKTk7HrFcLgep6/Uau90OnlhSlRVsWeeq+AGc+njXYMKcDMLwfZBs2/bdYFhrRsmPDOkXvSGDg3+4MWTOTXV2yo/+cU2jyWpkx0fNAfz1Bsf7n5F4Br7pqZNbAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232536&quot;
+        title=&quot;20210624232536&quot;
+        src=&quot;/static/ef5cadd2b3013e19c69f64df97e75706/fcda8/20210624232536.png&quot;
+        srcset=&quot;/static/ef5cadd2b3013e19c69f64df97e75706/12f09/20210624232536.png 148w,
+/static/ef5cadd2b3013e19c69f64df97e75706/e4a3f/20210624232536.png 295w,
+/static/ef5cadd2b3013e19c69f64df97e75706/fcda8/20210624232536.png 590w,
+/static/ef5cadd2b3013e19c69f64df97e75706/d6331/20210624232536.png 702w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; margin: 0 0 30px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9a91e675229fcd5ba849f5f64ac1e896/37c35/20210624232540.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAABdklEQVQoz62Sba+jIBCF/f8/rk3TtE2Tpnttaq0vFJQLigOeHfB600327qfFHBkIPM6cMcN/GPM8f8eZEAKbzSbpdDphv9/jcDgkxXi322G73fKlAGOiPCxrGELSClvnzDmHCG3bFlLKFCslWQpVVaV9IVoQBY4dytKh64jPErSmBFqVgOM44vV6wVqbIFprXivUVYNO9XAuXgI+dYD3YM3/LD3zfKppmq/sWoZ2uP4q8ZHfkd8KPMoaqjOQDH8+JSKO82HwUm5ZlrhcLimhlGF8TdP0LZoCHleJ+7WCqi1kbaDFiL7lSp4G0yeBLCGwp9Ge8/mM4/GI2+2GEMICjGUaY5ZZG1R5jXv+QFU0aEoBrdiOtocSHYN7WGlBnjjjJ/I8R1EUCRgtS00hWsyNX/Vs/vAaYKSBkw5h8AiW90eex8BrLpXmVPbfRvLw/T9a3P2a7AyqCL73ILEowtYz7x1elb136A/Fhy97xZCwxDN3OMXzz/oN4TQGx0d8NnIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;20210624232540&quot;
+        title=&quot;20210624232540&quot;
+        src=&quot;/static/9a91e675229fcd5ba849f5f64ac1e896/fcda8/20210624232540.png&quot;
+        srcset=&quot;/static/9a91e675229fcd5ba849f5f64ac1e896/12f09/20210624232540.png 148w,
+/static/9a91e675229fcd5ba849f5f64ac1e896/e4a3f/20210624232540.png 295w,
+/static/9a91e675229fcd5ba849f5f64ac1e896/fcda8/20210624232540.png 590w,
+/static/9a91e675229fcd5ba849f5f64ac1e896/efc66/20210624232540.png 885w,
+/static/9a91e675229fcd5ba849f5f64ac1e896/c83ae/20210624232540.png 1180w,
+/static/9a91e675229fcd5ba849f5f64ac1e896/37c35/20210624232540.png 1810w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;So, finally applying all these concepts to a data set, would be the linear regression algorithm in action.
+&lt;img src=&quot;https://miro.medium.com/max/1280/0*bqn5VPF62B1Nn9TG.gif&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For Precious, with Patience.&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item></channel></rss>
