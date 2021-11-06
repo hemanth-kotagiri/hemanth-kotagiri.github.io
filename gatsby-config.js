@@ -29,19 +29,19 @@ module.exports = {
       {
         name: 'Results RESTFul API',
         description:
-          '● A RestAPI built from scratch using Python and Flask to fetch the results of my University’s students of all years with different endpoints. The RestAPI has been deployed over at Heroku PaaS',
+          '● A RestAPI built from scratch using Python and Flask to fetch the results of my University’s students of all years with different endpoints. The RestAPI has been deployed over at Heroku PaaS.',
         link: 'https://github.com/hemanth-kotagiri/sgpa-rest-api',
       },
       {
         name: 'SGPA Calculator Application',
         description:
-          '● Using Flutter and Dart, engineered an Open-source cross-platform application to calculate stream-specific',
+          '● Using Flutter and Dart, engineered an Open-source cross-platform application to calculate stream-specific GPA.',
         link: 'https://github.com/hemanth-kotagiri/sgpa-calculator',
       },
       {
         name: 'Brain Tumor Detection',
         description:
-          '● Using Brain MRI images, a predictive model using Tensorflow and Keras was built using a CNN and provided high accuracy on testing data',
+          '● Using Brain MRI images, a predictive model using Tensorflow and Keras was built using a CNN and provided high accuracy on testing data.',
         link: 'https://github.com/hemanth-kotagiri/brain-tumor-detection',
       },
       {
@@ -51,7 +51,7 @@ module.exports = {
         of each review and generated multiple predictive models such as
         Logistic Regression, Naive Bayes Classifier, Random Forest Classifier
         to classify as positive/negative with And overall average accuracy of
-        >80%`,
+        >80%.`,
         link: 'https://github.com/hemanth-kotagiri/xdi-amazon-eda-ml',
       },
       {
@@ -59,7 +59,7 @@ module.exports = {
         description: `● Using a public API, developed a web application using
         Python & Streamlit to seamlessly integrate the data into an analytical
         dashboard and provide daily live insights of the spread of the Novel
-        Coronavirus. Application is deployed over at Heroku`,
+        Coronavirus. Application is deployed over at Heroku.`,
         link: 'https://covid-india-dash-board.herokuapp.com/',
       },
       {
@@ -79,7 +79,7 @@ module.exports = {
       {
         name: 'Daily Report Generator',
         description: `● Developed an Open-source cross-platform Mobile
-        Application to automate daily excel reports using`,
+        Application to automate daily excel reports using Python and Kivy.`,
         link: 'https://github.com/hemanth-kotagiri/report-generator',
       },
     ],
@@ -88,7 +88,7 @@ module.exports = {
       {
         name: 'plumina.ai',
         description:
-          'Applied Machine Learning Engineer, February 2020 - February 2021',
+          'Applied Machine Learning Engineer (Independent Contributor, Part Time), June 2020 - September 2020',
         link: '',
       },
       {
@@ -109,7 +109,7 @@ module.exports = {
       {
         name: 'Languages & Frameworks',
         description:
-          'Python, C, C++, Java, JavaScript, Golang, Dart, Flutter, Scikit-Learn, TensorFlow, Pandas, NumPy, Matplotlib, Seaborn',
+          'Python, C, C++, Java, HTML, CSS, TailwindCSS (basics), ReactJS, JavaScript(ES6+), Golang, Dart, Flutter, Flask, Selenium, Scikit-Learn, TensorFlow, Keras, Pandas, NumPy, Matplotlib, Seaborn.',
       },
       {
         name: 'Databases',
@@ -118,7 +118,7 @@ module.exports = {
       {
         name: 'Other',
         description:
-          'Vim, Linux, Docker(basics), Heroku, CI / CD, REST-API design',
+          'Vim, Linux, Docker(basics), Heroku, CI / CD, REST-API design, Machine Learning, Natural Language Processing, Deep Learning, Computer Vision.',
       },
     ],
   },

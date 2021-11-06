@@ -4,6 +4,27 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+
+.old-footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  color: white;
+  width: 100%;
+}
+
+.old-footer-top {
+  font-family: 'Rock Salt', cursive;
+  font-size: 1.3rem;
+}
+.old-footer-bottom {
+  font-family: 'Libre Barcode 39 Text', cursive;
+  font-size: 2rem;
+}
 
 .footer {
   font-family: 'Special Elite', cursive;
