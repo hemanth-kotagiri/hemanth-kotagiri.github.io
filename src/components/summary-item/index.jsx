@@ -7,12 +7,20 @@ const classes = {
   description: 'text-md text-gray-600 font-light',
 };
 
-const SummaryItem = ({ name, description, link = false, internal = false }) => {
-  let linkContent;
+const SummaryItem = ({ name, description, link = false, internal = false , title }) => {
+  let linkContent, listItems = null;
   if (internal) {
     linkContent = <Link to={link}>{name}</Link>;
   } else {
     linkContent = <a href={link}>{name}</a>;
+  }
+
+  const moreThanOnePoint = description.length > 1 && typeof description === "object";
+
+  if (moreThanOnePoint) {
+      description = Array.from(description);
+    listItems = description.map((item, index) => <p key={ index } className={classes.description}>{item}</p>
+    );
   }
 
   return (
@@ -24,7 +32,7 @@ const SummaryItem = ({ name, description, link = false, internal = false }) => {
       >
         {link ? linkContent : name}
       </h3>
-      <p className={classes.description}>{description}</p>
+    {listItems ? listItems : <p className={classes.description}>{description}</p>}
     </div>
   );
 };

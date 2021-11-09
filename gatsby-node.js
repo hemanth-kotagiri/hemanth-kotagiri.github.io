@@ -82,7 +82,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type SectionItem {
       name: String!
-      description: String!
+      description: [String]!
       link: String!
     }
 

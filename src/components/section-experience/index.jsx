@@ -14,6 +14,7 @@ const SectionExperience = ({ experience }) => {
           name={item.name}
           description={item.description}
           link={item.link}
+          title="Experience"
         />
       ))}
     </Section>
