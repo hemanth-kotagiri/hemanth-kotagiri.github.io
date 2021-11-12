@@ -135,10 +135,31 @@ module.exports = {
         link:
           'https://drive.google.com/file/d/1uyeHMYoaHS2Fcn_D8_fxOrflrDdoL5EW/view?usp=sharing',
       },
+      {
+        name: 'Open Source Contributor',
+        description: [
+          ` ● Actively contributing to TheNewBoston and improved their website by raising PRs and issues.`,
+          ` ● Reviewed over 30+ Pull Requests in various projects targetting
+          algorithmic implementations of different languages such as C, C++,
+          Python, Java, Go, and JavaScript.`,
+        ],
+        link: 'https://www.github.com/hemanth-kotagiri',
+      },
+      {
+        name: 'Hacktoberfest 2020 & 2021',
+        description: [
+          `● Participated in a month-long event organized by Ditial Ocean,
+          appwrite, deepsource, Intel, ThePracticalDev and Hacktoberfest team to
+          celebrate Open Source.`,
+          `● Raised multiple Pull Requests contributing to more than 4 Open
+          Source repositories targeting Data Structures and Algorithms.`,
+        ],
+        link: '',
+      },
     ],
     education: [
       {
-        name: 'Computer Science & Engineering Undergrad',
+        name: 'Computer Science & Engineering Undergraduate',
         description: [
           'Jawaharlal Nehru Technological University, Hyderabad',
           'Senior Year',
