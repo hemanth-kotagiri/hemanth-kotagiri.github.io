@@ -118,7 +118,7 @@ module.exports = {
           'Data Analyst Virtual Intern, May 2020 – Aug 2020',
           `● Exploratory Data Analysis - Using Python, Matplotlib, Pandas, Numpy, and Seaborn performed EDA on one
       hundred hypothetical customer transaction data.`,
-          ` ● Predictive Analytics: Using Scikit-Learn generated multiple Machine Learning models such as Random Forest
+          ` ● Predictive Analytics - Using Scikit-Learn generated multiple Machine Learning models such as Random Forest
       regressor, Linear Regressor, and predicted the Annual Income of a potential customer based on different
       customer attributes.`,
         ],
@@ -134,6 +134,16 @@ module.exports = {
         ],
         link:
           'https://drive.google.com/file/d/1uyeHMYoaHS2Fcn_D8_fxOrflrDdoL5EW/view?usp=sharing',
+      },
+    ],
+    education: [
+      {
+        name: 'Computer Science & Engineering Undergrad',
+        description: [
+          'Jawaharlal Nehru Technological University, Hyderabad',
+          'Senior Year',
+        ],
+        link: '',
       },
     ],
     // Optional: List your skills, they must have `name` and `description`.
