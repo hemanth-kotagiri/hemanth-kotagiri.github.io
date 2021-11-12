@@ -182,7 +182,7 @@ module.exports = {
       {
         name: 'Other',
         description: [
-          'Vim, Linux, Docker(basics), Heroku, CI / CD, REST-API design, Machine Learning, Natural Language Processing, Deep Learning, Computer Vision.',
+          'Vim, Tmux, Linux, Git, GitHub, Docker(basics), Heroku, CI / CD, REST-API design, Machine Learning, Natural Language Processing, Deep Learning, Computer Vision.',
         ],
       },
     ],

@@ -26,7 +26,26 @@
   font-size: 2rem;
 }
 
+.footer:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: grey;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.footer:hover:before {
+  visibility: visible;
+  width: 100%;
+}
+
 .footer {
+  position: relative;
+  border-bottom: 0.1px solid grey;
   font-family: 'Special Elite', cursive;
 }
 
