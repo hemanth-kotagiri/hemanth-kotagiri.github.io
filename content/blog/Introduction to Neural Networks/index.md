@@ -1,6 +1,6 @@
 ---
 title: Introduction to Neural Networks
-date: '2021-10-7'
+date: '2021-10-07'
 description: 'Learn about Neural Networks'
 ---
 

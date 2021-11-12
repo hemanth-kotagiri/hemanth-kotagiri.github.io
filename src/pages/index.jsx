@@ -31,7 +31,7 @@ const Index = ({ data }) => {
         <SectionExperience experience={experience} />
       )}
       {skills && skills.length && <SectionSkills skills={skills} />}
-    <SectionFooter />
+      <SectionFooter />
     </Layout>
   );
 };

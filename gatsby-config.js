@@ -103,7 +103,8 @@ module.exports = {
       {
         name: 'plumina.ai',
         description: [
-          'Applied Machine Learning Engineer (Independent Contributor, Part Time), June 2020 - September 2020',
+          'Applied Machine Learning Engineer, June 2020 - September 2020',
+          '(Independent Contributor, Part Time)',
           `● Worked single-handedly as the core developer for creating multiple Machine Learning models under the
             category of Regression and Classification using Scikit-Learn and Python.`,
           ` ● Generated Deep Neural Network models for binary classification using Tensorflow, Keras.`,
