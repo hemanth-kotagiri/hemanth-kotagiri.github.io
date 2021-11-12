@@ -1,9 +1,9 @@
 {
-  "name": "devfolio",
+  "name": "personal-portfolio",
   "private": true,
-  "description": "A modern and production-ready personal portfolio + blog template built with GatsbyJs and TailwindCSS",
+  "description": "Personal Portfolio",
   "version": "0.1.0",
-  "author": "Ryan Fitzgerald",
+  "author": "Hemanth Kotagiri",
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "gatsby": "^2.24.67",
@@ -53,9 +53,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RyanFitzgerald/devfolio"
+    "url": "https://github.com/hemanth-kotagiri/hemanth-kotagiri.github.io"
   },
   "bugs": {
-    "url": "https://github.com/RyanFitzgerald/devfolio/issues"
+    "url": "https://github.com/hemanth-kotagiri/hemanth-kotagiri.github.io/issues"
   }
 }
