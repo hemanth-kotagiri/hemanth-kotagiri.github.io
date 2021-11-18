@@ -38,7 +38,7 @@ module.exports = {
         name: 'SGPA Calculator Application',
         description: [
           '● Using Flutter and Dart, engineered an Open-source cross-platform application to calculate stream-specific GPA.',
-          '● This application servers as the front-end client for the Results RESTFul API.',
+          '● This application serves as the front-end client for the Results RESTFul API.',
         ],
         link: 'https://github.com/hemanth-kotagiri/sgpa-calculator',
       },
