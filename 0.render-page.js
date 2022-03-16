@@ -1044,9 +1044,9 @@ exports.modules = {
                 window.SVGPathElement.prototype.getPathSegAtLength = function (distance) {
                     if (distance === undefined || !isFinite(distance))
                         throw "Invalid arguments.";
-                    var measurementElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    const measurementElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
                     measurementElement.setAttribute("d", this.getAttribute("d"));
-                    var lastPathSegment = measurementElement.pathSegList.numberOfItems - 1;
+                    let lastPathSegment = measurementElement.pathSegList.numberOfItems - 1;
                     if (lastPathSegment <= 0)
                         return 0;
                     do {
@@ -1114,7 +1114,7 @@ exports.modules = {
             window.SVGPathSegList.prototype._updateListFromPathMutations = function (mutationRecords) {
                 if (!this._pathElement)
                     return;
-                var hasPathMutations = false;
+                let hasPathMutations = false;
                 mutationRecords.forEach(function (record) {
                     if (record.attributeName == "d")
                         hasPathMutations = true;
@@ -1180,7 +1180,7 @@ exports.modules = {
             window.SVGPathSegList.prototype.removeItem = function (index) {
                 this._checkPathSynchronizedToList();
                 this._checkValidIndex(index);
-                var item = this._list[index];
+                const item = this._list[index];
                 this._list.splice(index, 1);
                 this._writeListToPath();
                 return item;
@@ -1196,8 +1196,8 @@ exports.modules = {
                 return newItem;
             };
             window.SVGPathSegList._pathSegArrayAsString = function (pathSegArray) {
-                var string = "";
-                var first = true;
+                let string = "";
+                let first = true;
                 pathSegArray.forEach(function (pathSeg) {
                     if (first) {
                         first = false;
@@ -1212,14 +1212,14 @@ exports.modules = {
             window.SVGPathSegList.prototype._parsePath = function (string) {
                 if (!string || string.length == 0)
                     return [];
-                var owningPathSegList = this;
-                var Builder = function () {
+                const owningPathSegList = this;
+                const Builder = function () {
                     this.pathSegList = [];
                 };
                 Builder.prototype.appendSegment = function (pathSeg) {
                     this.pathSegList.push(pathSeg);
                 };
-                var Source = function (string) {
+                const Source = function (string) {
                     this._string = string;
                     this._currentIndex = 0;
                     this._endIndex = this._string.length;
@@ -1227,9 +1227,13 @@ exports.modules = {
                     this._skipOptionalSpaces();
                 };
                 Source.prototype._isCurrentSpace = function () {
-                    var character = this._string[this._currentIndex];
+                    const character = this._string[this._currentIndex];
                     return (character <= " " &&
-                        (character == " " || character == "\n" || character == "\t" || character == "\r" || character == "\f"));
+                        (character == " " ||
+                            character == "\n" ||
+                            character == "\t" ||
+                            character == "\r" ||
+                            character == "\f"));
                 };
                 Source.prototype._skipOptionalSpaces = function () {
                     while (this._currentIndex < this._endIndex && this._isCurrentSpace())
@@ -1253,7 +1257,7 @@ exports.modules = {
                     return this._currentIndex < this._endIndex;
                 };
                 Source.prototype.peekSegmentType = function () {
-                    var lookahead = this._string[this._currentIndex];
+                    const lookahead = this._string[this._currentIndex];
                     return this._pathSegTypeFromChar(lookahead);
                 };
                 Source.prototype._pathSegTypeFromChar = function (lookahead) {
@@ -1302,7 +1306,10 @@ exports.modules = {
                     }
                 };
                 Source.prototype._nextCommandHelper = function (lookahead, previousCommand) {
-                    if ((lookahead == "+" || lookahead == "-" || lookahead == "." || (lookahead >= "0" && lookahead <= "9")) &&
+                    if ((lookahead == "+" ||
+                        lookahead == "-" ||
+                        lookahead == "." ||
+                        (lookahead >= "0" && lookahead <= "9")) &&
                         previousCommand != window.SVGPathSeg.PATHSEG_CLOSEPATH) {
                         if (previousCommand == window.SVGPathSeg.PATHSEG_MOVETO_ABS)
                             return window.SVGPathSeg.PATHSEG_LINETO_ABS;
@@ -1315,17 +1322,18 @@ exports.modules = {
                 Source.prototype.initialCommandIsMoveTo = function () {
                     if (!this.hasMoreData())
                         return true;
-                    var command = this.peekSegmentType();
-                    return command == window.SVGPathSeg.PATHSEG_MOVETO_ABS || command == window.SVGPathSeg.PATHSEG_MOVETO_REL;
+                    const command = this.peekSegmentType();
+                    return (command == window.SVGPathSeg.PATHSEG_MOVETO_ABS ||
+                        command == window.SVGPathSeg.PATHSEG_MOVETO_REL);
                 };
                 Source.prototype._parseNumber = function () {
-                    var exponent = 0;
-                    var integer = 0;
-                    var frac = 1;
-                    var decimal = 0;
-                    var sign = 1;
-                    var expsign = 1;
-                    var startIndex = this._currentIndex;
+                    let exponent = 0;
+                    let integer = 0;
+                    let frac = 1;
+                    let decimal = 0;
+                    let sign = 1;
+                    let expsign = 1;
+                    const startIndex = this._currentIndex;
                     this._skipOptionalSpaces();
                     if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "+")
                         this._currentIndex++;
@@ -1334,17 +1342,18 @@ exports.modules = {
                         sign = -1;
                     }
                     if (this._currentIndex == this._endIndex ||
-                        ((this._string.charAt(this._currentIndex) < "0" || this._string.charAt(this._currentIndex) > "9") &&
+                        ((this._string.charAt(this._currentIndex) < "0" ||
+                            this._string.charAt(this._currentIndex) > "9") &&
                             this._string.charAt(this._currentIndex) != "."))
                         return undefined;
-                    var startIntPartIndex = this._currentIndex;
+                    const startIntPartIndex = this._currentIndex;
                     while (this._currentIndex < this._endIndex &&
                         this._string.charAt(this._currentIndex) >= "0" &&
                         this._string.charAt(this._currentIndex) <= "9")
                         this._currentIndex++;
                     if (this._currentIndex != startIntPartIndex) {
-                        var scanIntPartIndex = this._currentIndex - 1;
-                        var multiplier = 1;
+                        let scanIntPartIndex = this._currentIndex - 1;
+                        let multiplier = 1;
                         while (scanIntPartIndex >= startIntPartIndex) {
                             integer += multiplier * (this._string.charAt(scanIntPartIndex--) - "0");
                             multiplier *= 10;
@@ -1366,7 +1375,8 @@ exports.modules = {
                     }
                     if (this._currentIndex != startIndex &&
                         this._currentIndex + 1 < this._endIndex &&
-                        (this._string.charAt(this._currentIndex) == "e" || this._string.charAt(this._currentIndex) == "E") &&
+                        (this._string.charAt(this._currentIndex) == "e" ||
+                            this._string.charAt(this._currentIndex) == "E") &&
                         this._string.charAt(this._currentIndex + 1) != "x" &&
                         this._string.charAt(this._currentIndex + 1) != "m") {
                         this._currentIndex++;
@@ -1389,7 +1399,7 @@ exports.modules = {
                             this._currentIndex++;
                         }
                     }
-                    var number = integer + decimal;
+                    let number = integer + decimal;
                     number *= sign;
                     if (exponent)
                         number *= Math.pow(10, expsign * exponent);
@@ -1401,8 +1411,8 @@ exports.modules = {
                 Source.prototype._parseArcFlag = function () {
                     if (this._currentIndex >= this._endIndex)
                         return undefined;
-                    var flag = false;
-                    var flagChar = this._string.charAt(this._currentIndex++);
+                    let flag = false;
+                    const flagChar = this._string.charAt(this._currentIndex++);
                     if (flagChar == "0")
                         flag = false;
                     else if (flagChar == "1")
@@ -1413,8 +1423,8 @@ exports.modules = {
                     return flag;
                 };
                 Source.prototype.parseSegment = function () {
-                    var lookahead = this._string[this._currentIndex];
-                    var command = this._pathSegTypeFromChar(lookahead);
+                    const lookahead = this._string[this._currentIndex];
+                    let command = this._pathSegTypeFromChar(lookahead);
                     if (command == window.SVGPathSeg.PATHSEG_UNKNOWN) {
                         if (this._previousCommand == window.SVGPathSeg.PATHSEG_UNKNOWN)
                             return null;
@@ -1426,6 +1436,7 @@ exports.modules = {
                         this._currentIndex++;
                     }
                     this._previousCommand = command;
+                    let points;
                     switch (command) {
                         case window.SVGPathSeg.PATHSEG_MOVETO_REL:
                             return new window.SVGPathSegMovetoRel(owningPathSegList, this._parseNumber(), this._parseNumber());
@@ -1447,7 +1458,7 @@ exports.modules = {
                             this._skipOptionalSpaces();
                             return new window.SVGPathSegClosePath(owningPathSegList);
                         case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
-                            var points = {
+                            points = {
                                 x1: this._parseNumber(),
                                 y1: this._parseNumber(),
                                 x2: this._parseNumber(),
@@ -1457,7 +1468,7 @@ exports.modules = {
                             };
                             return new window.SVGPathSegCurvetoCubicRel(owningPathSegList, points.x, points.y, points.x1, points.y1, points.x2, points.y2);
                         case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
-                            var points = {
+                            points = {
                                 x1: this._parseNumber(),
                                 y1: this._parseNumber(),
                                 x2: this._parseNumber(),
@@ -1467,7 +1478,7 @@ exports.modules = {
                             };
                             return new window.SVGPathSegCurvetoCubicAbs(owningPathSegList, points.x, points.y, points.x1, points.y1, points.x2, points.y2);
                         case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
-                            var points = {
+                            points = {
                                 x2: this._parseNumber(),
                                 y2: this._parseNumber(),
                                 x: this._parseNumber(),
@@ -1475,7 +1486,7 @@ exports.modules = {
                             };
                             return new window.SVGPathSegCurvetoCubicSmoothRel(owningPathSegList, points.x, points.y, points.x2, points.y2);
                         case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
-                            var points = {
+                            points = {
                                 x2: this._parseNumber(),
                                 y2: this._parseNumber(),
                                 x: this._parseNumber(),
@@ -1483,7 +1494,7 @@ exports.modules = {
                             };
                             return new window.SVGPathSegCurvetoCubicSmoothAbs(owningPathSegList, points.x, points.y, points.x2, points.y2);
                         case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
-                            var points = {
+                            points = {
                                 x1: this._parseNumber(),
                                 y1: this._parseNumber(),
                                 x: this._parseNumber(),
@@ -1491,7 +1502,7 @@ exports.modules = {
                             };
                             return new window.SVGPathSegCurvetoQuadraticRel(owningPathSegList, points.x, points.y, points.x1, points.y1);
                         case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
-                            var points = {
+                            points = {
                                 x1: this._parseNumber(),
                                 y1: this._parseNumber(),
                                 x: this._parseNumber(),
@@ -1503,7 +1514,7 @@ exports.modules = {
                         case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
                             return new window.SVGPathSegCurvetoQuadraticSmoothAbs(owningPathSegList, this._parseNumber(), this._parseNumber());
                         case window.SVGPathSeg.PATHSEG_ARC_REL:
-                            var points = {
+                            points = {
                                 x1: this._parseNumber(),
                                 y1: this._parseNumber(),
                                 arcAngle: this._parseNumber(),
@@ -1514,7 +1525,7 @@ exports.modules = {
                             };
                             return new window.SVGPathSegArcRel(owningPathSegList, points.x, points.y, points.x1, points.y1, points.arcAngle, points.arcLarge, points.arcSweep);
                         case window.SVGPathSeg.PATHSEG_ARC_ABS:
-                            var points = {
+                            points = {
                                 x1: this._parseNumber(),
                                 y1: this._parseNumber(),
                                 arcAngle: this._parseNumber(),
@@ -1528,12 +1539,12 @@ exports.modules = {
                             throw "Unknown path seg type.";
                     }
                 };
-                var builder = new Builder();
-                var source = new Source(string);
+                const builder = new Builder();
+                const source = new Source(string);
                 if (!source.initialCommandIsMoveTo())
                     return [];
                 while (source.hasMoreData()) {
-                    var pathSeg = source.parseSegment();
+                    const pathSeg = source.parseSegment();
                     if (!pathSeg)
                         return [];
                     builder.appendSegment(pathSeg);
