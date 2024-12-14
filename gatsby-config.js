@@ -7,10 +7,12 @@ module.exports = {
     // Main Site Title
     title: `Hemanth Kotagiri | Data Scientist`,
     // Description that goes under your name in main bio
-    description: `Stoic 🌈 | Passionate Programmer 🧑‍💻 | Mathematics 🎲
-    | Philosophy 🦉| Physics ⚛ | AI 🤖 | Pythoneer 🐍 | Bibliophile 📚 |
-    Polymath 👁 | Forever Learer  🧑🏻‍🎓| Excited Teacher 🧑‍🏫`,
-    // Optional: Twitter account handle
+    // description: `Stoic 🌈 | Passionate Programmer 🧑‍💻 | Mathematics 🎲
+    // | Philosophy 🦉| Physics ⚛ | AI 🤖 | Pythoneer 🐍 | Bibliophile 📚 |
+    // Polymath 👁 | Forever Learer  🧑🏻‍🎓| Excited Teacher 🧑‍🏫`,
+    // description: ``, // Optional: Twitter account handle
+    // description: ``,
+    description: `Travelling | Curious Explorer | Lifelong Learner | Tech Enthusiast`,
     //author: `@Hemanth043`,
     // Optional: Github account URL
     github: `https://github.com/hemanth-kotagiri`,
