@@ -17,15 +17,27 @@ module.exports = {
     // Optional: LinkedIn account URL
     linkedin: `https://www.linkedin.com/in/hemanth-kotagiri/`,
     // Content of the About Me section
-    about: `A freelancer delivering high-quality data-driven
-    solutions for challenging problems such as image classification, regression
-    analysis in the field of Machine Learning and Deep Learning. I love working on
-    web-development and mobile-application development projects as well. In my
-    fair time, I tend to ponder upon the universe, existence, consciousness,
-    science, psychology, philosophy, physics, mathematics, and learn literally
-    anything that crosses my mind.  Yes, an aspiring polymath.`,
+    about: `Working as a Lead Technical Architect for a full stack web
+    developement team, guiding and delivering end-to-end, highly performant,
+    scalable web solutions. Alongside this, I also freelance delivering
+    high-quality data-driven solutions for challenging problems such as image
+    classification, regression analysis in the field of Machine Learning and
+    Deep Learning. I love working on mobile-application development projects as
+    well. In my fair time, I tend to ponder upon the universe, existence,
+    consciousness, science, psychology, philosophy, physics, mathematics, and
+    learn literally anything that crosses my mind. I love learning!`,
     // Optional: List your projects, they must have `name` and `description`. `link` is optional.
     projects: [
+      {
+        name: 'JNTUH Results Statistics',
+        description: [
+          '● This project aims to solve a single core issue - the ability to filter desired results from a gigantic list of links from our University.',
+          '● Student has the ability to fetch their specific result also fetch multiple results with performance statistics.',
+          '● Students have the ability to fetch results of all of their classmates with performance statistics.',
+          '● Build using NextJS - React - TypeScript - TailwindCSS',
+        ],
+        link: 'https://jntuh-results-stats.netlify.app/',
+      },
       {
         name: 'Results RESTFul API',
         description: [
@@ -100,6 +112,27 @@ module.exports = {
     ],
     // Optional: List your experience, they must have `name` and `description`. `link` is optional.
     experience: [
+      {
+        name: 'Louvir',
+        description: [
+          'Lead Technical Architect',
+          'November 2024 - Present',
+
+          ` ● Lead and mentor the development team, fostering adherence to industry coding and system design standards while driving technical excellence.`,
+          ` ● Serve as the bridge between technical teams and business stakeholders, ensuring seamless integration of technical components into overall projects and define technical requirements and architecture specifications`,
+          ` ● Design and oversee the architecture of systems, applications, and infrastructure to ensure scalability, reliability, and alignment with the company's technical roadmap.`,
+          ` ● Conduct comprehensive code reviews, ensuring adherence to best practices, coding standards, and design principles to maintain a clean and efficient codebase.`,
+          ` ● Stay current with industry trends and emerging technologies, proposing innovative solutions to enhance business efficiency and solve complex technical challenges.`,
+          ` ● Ensure all technical solutions are tested thoroughly for performance, security, and reliability, adhering to best practices and functional requirements.`,
+          ` ● Establish and enforce coding standards, performance benchmarks, and secure development practices to maintain system quality and compliance.`,
+          ` ● Ensure security best practices and compliance with HIPAA and other regulatory requirements, integrating secure development principles into the product lifecycle.`,
+          ` ● Serve as Scrum Master, facilitating Agile ceremonies, removing blockers, and enabling the team to achieve sprint goals and deliverables.`,
+
+          'Full Stack Engineer',
+          'March 2023 - October 2024',
+        ],
+        link: 'https://louvir.com/',
+      },
       {
         name: 'plumina.ai',
         description: [
